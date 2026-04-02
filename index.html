@@ -425,6 +425,7 @@
             { Kategori: 'Summary', 'Nama Item': 'Maintenance Pabrik', Target: 100, Realisasi: 85.25, Satuan: '%' },
             { Kategori: 'Summary', 'Nama Item': 'PR Investasi Pabrik', Target: 50, Realisasi: 42, Satuan: 'Paket' },
             { Kategori: 'Summary', 'Nama Item': 'PR Eksploitasi', Target: 12, Realisasi: 10, Satuan: 'Paket' },
+           
             { Kategori: 'Summary', 'Nama Item': 'Tebu Digiling', Target: 100, Realisasi: 10, Satuan: 'Ton' },
             { Kategori: 'Summary', 'Nama Item': 'Produksi GKP', Target: 120, Realisasi: 12, Satuan: 'Ton' },
             { Kategori: 'Summary', 'Nama Item': 'Rendemen', Target: 7, Realisasi: 6, Satuan: '%' },
@@ -622,7 +623,7 @@
             
             // 5. Produksi GKP (Ton)
             const eks = data.find(d => clean(getNama(d)).includes('produksi gkp'));
-            if(eks) {
+            if(prod) {
                 const t = parseNum(getTarget(prod));
                 const r = parseNum(getRealisasi(prod));
                 const sat = getSatuan(prod) || "Ton"; // Ambil satuan atau default 'Ton'
@@ -637,7 +638,7 @@
             
             // 6. Rendemen (%)
             const eks = data.find(d => clean(getNama(d)).includes('rendemen'));
-            if(eks) {
+            if(ren) {
                 const t = parseNum(getTarget(ren));
                 const r = parseNum(getRealisasi(ren));
                 const sat = getSatuan(ren) || "%"; // Ambil satuan atau default '%'
