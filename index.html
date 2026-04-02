@@ -168,8 +168,84 @@
                         </div>
                     </div>
                  </div>
-        
-                <!-- AI Analysis Home -->
+
+                <!-- Card 4: Tebu Giling (Ton) -->
+                    <div class="summary-card p-6 rounded-xl" id="card-tebu giling">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-gray-400 text-sm font-bold">Tebu Giling</h4>
+                                <p class="text-xs text-gray-500">Sampai dengan hari ini</p>
+                            </div>
+                            <i class="fas fa-hard-hat text-3xl text-yellow-400 opacity-50"></i>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-end">
+                                <span class="text-xs text-gray-500">Target:</span>
+                                <span class="text-lg font-bold text-white" id="sum-tebu-target">-</span>
+                            </div>
+                            <div class="flex justify-between items-end">
+                                <span class="text-xs text-gray-500">Realisasi:</span>
+                                <span class="text-lg font-bold text-yellow-400" id="sum-tebu-real">-</span>
+                            </div>
+                            <div class="flex justify-between items-end border-t border-gray-700 pt-2 mt-2">
+                                <span class="text-xs text-gray-400 font-semibold">PERSEN:</span>
+                                <span class="text-xl font-bold" id="sum-tebu-pct">-</span>
+                            </div>
+                        </div>
+                    </div>
+                
+        <!-- Card 5: Produksi GKP (Ton) -->
+                    <div class="summary-card p-6 rounded-xl" id="card-produksi">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-gray-400 text-sm font-bold">Produksi GKP</h4>
+                                <p class="text-xs text-gray-500">sampai dengan hari ini</p>
+                            </div>
+                            <i class="fas fa-hard-hat text-3xl text-yellow-400 opacity-50"></i>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-end">
+                                <span class="text-xs text-gray-500">Target:</span>
+                                <span class="text-lg font-bold text-white" id="sum-prod-target">-</span>
+                            </div>
+                            <div class="flex justify-between items-end">
+                                <span class="text-xs text-gray-500">Realisasi:</span>
+                                <span class="text-lg font-bold text-yellow-400" id="sum-prod-real">-</span>
+                            </div>
+                            <div class="flex justify-between items-end border-t border-gray-700 pt-2 mt-2">
+                                <span class="text-xs text-gray-400 font-semibold">PERSEN:</span>
+                                <span class="text-xl font-bold" id="sum-prod-pct">-</span>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+        <!-- Card 6: Rendemen (%) -->
+                    <div class="summary-card p-6 rounded-xl" id="card-rendemen">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-gray-400 text-sm font-bold">Rendemen</h4>
+                                <p class="text-xs text-gray-500">Sampai dengan hari ini</p>
+                            </div>
+                            <i class="fas fa-hard-hat text-3xl text-yellow-400 opacity-50"></i>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-end">
+                                <span class="text-xs text-gray-500">Target:</span>
+                                <span class="text-lg font-bold text-white" id="sum-ren-target">-</span>
+                            </div>
+                            <div class="flex justify-between items-end">
+                                <span class="text-xs text-gray-500">Realisasi:</span>
+                                <span class="text-lg font-bold text-yellow-400" id="sum-ren-real">-</span>
+                            </div>
+                            <div class="flex justify-between items-end border-t border-gray-700 pt-2 mt-2">
+                                <span class="text-xs text-gray-400 font-semibold">PERSEN:</span>
+                                <span class="text-xl font-bold" id="sum-ren-pct">-</span>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+               
+            <!-- AI Analysis Home -->
                 <div class="glass-dark p-6 rounded-xl border-t-4 border-purple-500">
                     <div class="flex items-center justify-between mb-4">
                         <div class="flex items-center gap-2"><i class="fas fa-robot text-purple-400"></i><h3 class="font-bold text-white">Analisis AI Strategis</h3></div>
@@ -316,6 +392,9 @@
                                 <li><strong>Maintenance Pabrik</strong>: Target/Realisasi isi angka persen (contoh: 100). Satuan: %.</li>
                                 <li><strong>PR Investasi Pabrik</strong>: Target/Realisasi isi angka (contoh: 50). Satuan: Paket.</li>
                                 <li><strong>PR Eksploitasi</strong>: Target/Realisasi isi angka (contoh: 12). Satuan: Paket.</li>
+                                <li><strong>Tebu Digiling</strong>: Target/Realisasi isi angka (contoh: 1000). Satuan: Ton.</li>
+                                <li><strong>Produksi GKP</strong>: Target/Realisasi isi angka (contoh: 120). Satuan: Ton.</li>
+                                <li><strong>Rendemen</strong>: Target/Realisasi isi angka (contoh: 7). Satuan: %.</li>
                             </ul>
                         </div>
 
@@ -347,6 +426,9 @@
             { Kategori: 'Summary', 'Nama Item': 'Maintenance Pabrik', Target: 100, Realisasi: 85.25, Satuan: '%' },
             { Kategori: 'Summary', 'Nama Item': 'PR Investasi Pabrik', Target: 50, Realisasi: 42, Satuan: 'Paket' },
             { Kategori: 'Summary', 'Nama Item': 'PR Eksploitasi', Target: 12, Realisasi: 10, Satuan: 'Paket' },
+            { Kategori: 'Summary', 'Nama Item': 'Tebu Digiling', Target: 100, Realisasi: 10, Satuan: 'Ton' },
+            { Kategori: 'Summary', 'Nama Item': 'Produksi GKP', Target: 120, Realisasi: 12, Satuan: 'Ton' },
+            { Kategori: 'Summary', 'Nama Item': 'Rendemen', Target: 7, Realisasi: 6, Satuan: '%' },
             
             // Milestones for Persiapan
             { Kategori: 'Milestone', 'Nama Item': 'Start Overhaul', Target: '2024-04-01', Realisasi: '2024-04-02', Satuan: 'Tanggal' },
@@ -520,6 +602,51 @@
                 document.getElementById('sum-eks-target').innerText = t.toLocaleString('id-ID') + " " + sat;
                 document.getElementById('sum-eks-real').innerText = r.toLocaleString('id-ID') + " " + sat;
                 const elPct = document.getElementById('sum-eks-pct');
+                elPct.innerText = pct.toFixed(2) + "%";
+                elPct.className = `text-xl font-bold ${r < t ? 'text-red-400' : 'text-green-400'}`;
+            }
+           
+            // 4. Tebu Digiling (Ton)
+            const tebu = data.find(d => clean(getNama(d)).includes('tebu digiling'));
+            if(tebu) {
+                const t = parseNum(getTarget(tebu));
+                const r = parseNum(getRealisasi(tebu));
+                const sat = getSatuan(tebu) || "Ton"; // Ambil satuan atau default 'ton'
+                const pct = t > 0 ? (r/t)*100 : 0;
+                
+                document.getElementById('sum-tebu-target').innerText = t.toLocaleString('id-ID') + " " + sat;
+                document.getElementById('sum-tebu-real').innerText = r.toLocaleString('id-ID') + " " + sat;
+                const elPct = document.getElementById('sum-tebu-pct');
+                elPct.innerText = pct.toFixed(2) + "%";
+                elPct.className = `text-xl font-bold ${r < t ? 'text-red-400' : 'text-green-400'}`;
+            }
+            
+            // 5. Produksi GKP (Ton)
+            const eks = data.find(d => clean(getNama(d)).includes('produksi gkp'));
+            if(eks) {
+                const t = parseNum(getTarget(prod));
+                const r = parseNum(getRealisasi(prod));
+                const sat = getSatuan(prod) || "Ton"; // Ambil satuan atau default 'Ton'
+                const pct = t > 0 ? (r/t)*100 : 0;
+                
+                document.getElementById('sum-prod-target').innerText = t.toLocaleString('id-ID') + " " + sat;
+                document.getElementById('sum-prod-real').innerText = r.toLocaleString('id-ID') + " " + sat;
+                const elPct = document.getElementById('sum-prod-pct');
+                elPct.innerText = pct.toFixed(2) + "%";
+                elPct.className = `text-xl font-bold ${r < t ? 'text-red-400' : 'text-green-400'}`;
+            }
+            
+            // 6. Rendemen (%)
+            const eks = data.find(d => clean(getNama(d)).includes('rendemen'));
+            if(eks) {
+                const t = parseNum(getTarget(ren));
+                const r = parseNum(getRealisasi(ren));
+                const sat = getSatuan(ren) || "%"; // Ambil satuan atau default '%'
+                const pct = t > 0 ? (r/t)*100 : 0;
+                
+                document.getElementById('sum-ren-target').innerText = t.toLocaleString('id-ID') + " " + sat;
+                document.getElementById('sum-ren-real').innerText = r.toLocaleString('id-ID') + " " + sat;
+                const elPct = document.getElementById('sum-ren-pct');
                 elPct.innerText = pct.toFixed(2) + "%";
                 elPct.className = `text-xl font-bold ${r < t ? 'text-red-400' : 'text-green-400'}`;
             }
