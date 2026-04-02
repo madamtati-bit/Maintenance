@@ -622,7 +622,7 @@
             }
             
             // 5. Produksi GKP (Ton)
-            const eks = data.find(d => clean(getNama(d)).includes('produksi gkp'));
+            const prod = data.find(d => clean(getNama(d)).includes('produksi'));
             if(prod) {
                 const t = parseNum(getTarget(prod));
                 const r = parseNum(getRealisasi(prod));
@@ -637,7 +637,7 @@
             }
             
             // 6. Rendemen (%)
-            const eks = data.find(d => clean(getNama(d)).includes('rendemen'));
+            const ren = data.find(d => clean(getNama(d)).includes('rendemen'));
             if(ren) {
                 const t = parseNum(getTarget(ren));
                 const r = parseNum(getRealisasi(ren));
