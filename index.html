@@ -196,7 +196,7 @@
                     <div class="summary-card p-6 rounded-xl" id="card-Produksi GKP">
                         <div class="flex justify-between items-start mb-4">
                             <div>
-                                <h4 class="text-gray-400 text-sm font-bold">Produksi GKP</h4>
+                                <h4 class="text-gray-400 text-sm font-bold">Produksi Gkp</h4>
                                 <p class="text-xs text-gray-500">Sampai dengan Hari ini (Ton)</p>
                             </div>
                             <i class="fas fa-wrench text-3xl text-blue-400 opacity-50"></i>
@@ -218,7 +218,7 @@
                     </div>
 
                     <!-- Card 6: Rendemen (%) -->
-                    <div class="summary-card p-6 rounded-xl" id="card-Rendemen">
+                    <div class="summary-card p-6 rounded-xl" id="card-rendemen">
                         <div class="flex justify-between items-start mb-4">
                             <div>
                                 <h4 class="text-gray-400 text-sm font-bold">Rendemen</h4>
@@ -596,6 +596,21 @@
                 document.getElementById('sum-eks-target').innerText = t.toLocaleString('id-ID') + " " + sat;
                 document.getElementById('sum-eks-real').innerText = r.toLocaleString('id-ID') + " " + sat;
                 const elPct = document.getElementById('sum-eks-pct');
+                elPct.innerText = pct.toFixed(2) + "%";
+                elPct.className = `text-xl font-bold ${r < t ? 'text-red-400' : 'text-green-400'}`;
+            }
+            
+    // 4. Tebu Digiling (Paket/Buah)
+            const eks = data.find(d => clean(getNama(d)).includes('tebu'));
+            if(eks) {
+                const t = parseNum(getTarget(eks));
+                const r = parseNum(getRealisasi(eks));
+                const sat = getSatuan(eks) || "Ton"; // Ambil satuan atau default 'Ton'
+                const pct = t > 0 ? (r/t)*100 : 0;
+                
+                document.getElementById('sum-tebu-target').innerText = t.toLocaleString('id-ID') + " " + sat;
+                document.getElementById('sum-tebu-real').innerText = r.toLocaleString('id-ID') + " " + sat;
+                const elPct = document.getElementById('sum-tebu-pct');
                 elPct.innerText = pct.toFixed(2) + "%";
                 elPct.className = `text-xl font-bold ${r < t ? 'text-red-400' : 'text-green-400'}`;
             }
