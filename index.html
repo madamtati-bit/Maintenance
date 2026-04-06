@@ -445,7 +445,7 @@
             { Kategori: 'Maintenance', 'Nama Item': 'Boiler Repair', Target: 100, Realisasi: 40.50, Satuan: '%' },
             
             // Procurement Detail
-            { Kategori: 'Procurement', 'Nama Item': 'Sparepart', Target: 100, Realisasi: 20, Satuan: '%' },
+            { Kategori: 'Procurement', 'Nama Item': 'Investasi', Target: 100, Realisasi: 20, Satuan: 'Task' },
 
             // Keuangan
             { Kategori: 'Keuangan', 'Nama Item': 'Gaji', Target: 2000000000, Realisasi: 1800000000, Satuan: 'Rp' }
@@ -552,6 +552,7 @@
             renderChart('chartKeuangan', keu, ['#EF4444', '#DC2626'], charts.keu);
 
             renderMaintenanceDetail(maint);
+            renderProcurementDetail(proc);
             renderList('listProcurement', proc, 'yellow');
             
             runAIAnalysis();
@@ -576,7 +577,7 @@
                 else document.getElementById('card-maintenance').classList.remove('warning');
             }
 
-            // 2. PR Investasi (Paket/Buah)
+            // 2. PR Investasi (Task)
             const inv = data.find(d => clean(getNama(d)).includes('investasi'));
             if(inv) {
                 const t = parseNum(getTarget(inv));
@@ -591,7 +592,7 @@
                 elPct.className = `text-xl font-bold ${r < t ? 'text-red-400' : 'text-green-400'}`;
             }
 
-            // 3. PR Eksploitasi (Paket/Buah)
+            // 3. PR Eksploitasi (Task)
             const eks = data.find(d => clean(getNama(d)).includes('eksploitasi'));
             if(eks) {
                 const t = parseNum(getTarget(eks));
