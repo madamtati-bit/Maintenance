@@ -788,6 +788,32 @@
         }
 
         // ==========================================
+        // RENDER PROCUREMENT DETAIL
+        // ==========================================
+        function renderProcurementDetail(data) {
+            const c = document.getElementById('listProcurement');
+            let aiHtml = "";
+            c.innerHTML = data.map(item => {
+                const t = parseNum(getTarget(item));
+                const r = parseNum(getRealisasi(item));
+                const selisih = r - t;
+                const nama = getNama(item);
+
+                if (selisih < 0) aiHtml += `<div class='mt-2 text-xs text-red-400 bg-sugar-dark p-2 rounded'><i class="fas fa-exclamation-triangle mr-1"></i> <strong>${nama}</strong> tertunda ${Math.abs(selisih).toFixed(2)}%.</div>`;
+
+                return `
+                    <div class="bg-sugar-dark p-3 rounded-lg border-l-2 ${selisih < 0 ? 'border-red-500' : 'border-green-500'}">
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="font-semibold">${nama}</span>
+                            <span class="${selisih < 0 ? 'text-red-400' : 'text-green-400'}">${selisih > 0 ? '+' : ''}${selisih.toFixed(2)}%</span>
+                        </div>
+                        <div class="text-gray-500 text-[10px]">Target: ${t}% | Realisasi: ${r}%</div>
+                    </div>`;
+            }).join('');
+            document.getElementById('aiProcurementContent').innerHTML = aiHtml || "<p class='text-green-400'>Tidak ada keterlambatan pengadaan barang dan jasa.</p>";
+        }
+
+        // ==========================================
         // GRAFIK & LIST LAINNYA
         // ==========================================
         function renderChart(canvasId, data, colors, existingChart) {
