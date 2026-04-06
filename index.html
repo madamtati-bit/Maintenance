@@ -118,7 +118,7 @@
                         </div>
                     </div>
 
-                    <!-- Card 2: PR Investasi (Paket/Buah) -->
+                    <!-- Card 2: PR Investasi (Task) -->
                     <div class="summary-card p-6 rounded-xl" id="card-investasi">
                         <div class="flex justify-between items-start mb-4">
                             <div>
@@ -143,7 +143,7 @@
                         </div>
                     </div>
 
-                    <!-- Card 3: PR Eksploitasi (Paket/Buah) -->
+                    <!-- Card 3: PR Eksploitasi (Task) -->
                     <div class="summary-card p-6 rounded-xl" id="card-eksploitasi">
                         <div class="flex justify-between items-start mb-4">
                             <div>
@@ -446,7 +446,8 @@
             
             // Procurement Detail
             { Kategori: 'Procurement', 'Nama Item': 'Investasi', Target: 100, Realisasi: 20, Satuan: 'Task' },
-
+            { Kategori: 'Procurement', 'Nama Item': 'Eksploitasi', Target: 100, Realisasi: 20, Satuan: 'Task' },
+           
             // Keuangan
             { Kategori: 'Keuangan', 'Nama Item': 'Gaji', Target: 2000000000, Realisasi: 1800000000, Satuan: 'Rp' }
         ];
@@ -553,8 +554,7 @@
 
             renderMaintenanceDetail(maint);
             renderProcurementDetail(proc);
-            renderList('listProcurement', proc, 'yellow');
-            
+                       
             runAIAnalysis();
         }
 
