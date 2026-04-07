@@ -80,7 +80,7 @@
         <header class="flex justify-between items-center mb-8">
             <div>
                 <h2 class="text-2xl font-bold text-white" id="pageTitle">Dashboard Utama</h2>
-                <p class="text-gray-400" id="pageSubtitle">Ringkasan Progress Proyek.</p>
+                <p class="text-gray-400" id="pageSubtitle">Ringkasan Progress Overhoul 2026.</p>
             </div>
             <div class="flex items-center gap-4">
                 <span id="syncStatus" class="text-xs text-gray-500 bg-sugar-card px-3 py-1 rounded-full"><i class="fas fa-wifi mr-1"></i> Initializing...</span>
@@ -244,21 +244,21 @@
                     </div>
                  </div>
                
-            <!-- AI Analysis Home -->
+            <!-- AI Expert Analysis -->
                 <div class="glass-dark p-6 rounded-xl border-t-4 border-purple-500">
                     <div class="flex items-center justify-between mb-4">
-                        <div class="flex items-center gap-2"><i class="fas fa-robot text-purple-400"></i><h3 class="font-bold text-white">Analisis AI Strategis</h3></div>
-                        <button onclick="runAIAnalysis()" class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg text-xs"><i class="fas fa-brain mr-1"></i> Analisis</button>
+                        <div class="flex items-center gap-2"><i class="fas fa-robot text-purple-400"></i><h3 class="font-bold text-white">Analisis AI Ahli Gula (Expert system)</h3></div>
+                        <button onclick="runExpertAI()" class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg text-xs"><i class="fas fa-brain mr-1"></i> Run Analysis</button>
                     </div>
-                    <div id="aiHomeContent" class="text-sm text-gray-300 min-h-[150px] space-y-3">
-                        <p class="text-gray-400 italic">Menghitung deviasi proyek...</p>
+                    <div id="aiHomeContent" class="text-sm text-gray-200 space-y-4">
+                        <p class="text-gray-400 italic">Sistem siap menganalisis korelasi antar data...</p>
                     </div>
                 </div>
             </section>
 
             <!-- OPERASIONAL -->
             <section id="operasional" class="page-section">
-                <h3 class="font-bold text-lg mb-4 text-blue-400"><i class="fas fa-industry mr-2"></i>Data Operasional Pabrik</h3>
+                <h3 class="font-bold text-lg mb-4 text-blue-400"><i class="fas fa-industry mr-2"></i>Data Operasional Pabrik TG 2026</h3>
                  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
                     <div class="ops-card p-4 rounded-xl" id="card-tebu">
                         <h4 class="text-gray-400 text-xs">Tebu Giling</h4>
@@ -338,29 +338,25 @@
                     </div>
                 </div>
 
-                <div class="glass-dark p-6 rounded-xl border-t-4 border-yellow-500 mb-6">
-                    <div class="flex items-center gap-2 mb-2"><i class="fas fa-robot text-yellow-400"></i><h3 class="font-bold text-white">Analisis Timeline Persiapan</h3></div>
-                    <div id="aiPersiapanContent" class="text-sm text-gray-300">Analisis tanggal...</div>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-                    <div class="glass-dark p-6 rounded-xl border-t-4 border-neon-green">
-                        <h3 class="font-bold text-lg mb-4 text-green-400"><i class="fas fa-wrench mr-2"></i>Grafik Maintenance</h3>
+                    <!-- Grafik Persiapan (Maintenance & Procurement) - DIPERBAIKI -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6 mb-6">
+                    <!-- Card Maintenance -->
+                    <div class="glass-dark p-6 rounded-xl border-t-4 border-green-500">
+                        <h3 class="font-bold text-lg mb-4 text-green-400"><i class="fas fa-wrench mr-2"></i>Progress Maintenance</h3>
                         <div style="height: 300px;"><canvas id="chartMaintenance"></canvas></div>
+                        <div id="listMaintenance" class="mt-4 space-y-2 text-sm max-h-40 overflow-y-auto"></div>
                     </div>
-                    <div class="glass-dark p-6 rounded-xl border-t-4 border-neon-yellow">
-                        <h3 class="font-bold text-lg mb-4 text-yellow-400"><i class="fas fa-truck mr-2"></i>Grafik Procurement</h3>
+                    
+                    <!-- Card Procurement -->
+                    <div class="glass-dark p-6 rounded-xl border-t-4 border-yellow-500">
+                        <h3 class="font-bold text-lg mb-4 text-yellow-400"><i class="fas fa-truck mr-2"></i>Progress Procurement</h3>
                         <div style="height: 300px;"><canvas id="chartProcurement"></canvas></div>
+                        <div id="listProcurement" class="mt-4 space-y-2 text-sm max-h-40 overflow-y-auto"></div>
                     </div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                    <div class="glass-dark p-6 rounded-xl"><h4 class="font-bold mb-3">Detail Maintenance</h4><div id="listMaintenance" class="space-y-2 text-sm max-h-64 overflow-y-auto"></div></div>
-                    <div class="glass-dark p-6 rounded-xl"><h4 class="font-bold mb-3">Detail Procurement</h4><div id="listProcurement" class="space-y-2 text-sm max-h-64 overflow-y-auto"></div></div>
                 </div>
             </section>
 
-            <!-- KEUANGAN -->
+                        <!-- KEUANGAN -->
             <section id="keuangan" class="page-section">
                 <div class="glass-dark p-6 rounded-xl mb-6 border-t-4 border-neon-red">
                     <h3 class="font-bold text-lg mb-4 text-red-400"><i class="fas fa-wallet mr-2"></i>Grafik Keuangan</h3>
@@ -417,7 +413,11 @@
         const ADMIN_PASSWORD = "123456"; 
         
         let rawData = [];
-        let charts = { ops: null, main: null, proc: null, keu: null };
+        let analysisCache = { maint: null, inv: null, eks: null, ops: [], milestones: [] }; 
+        
+        // Register Chart Plugin Sekali Saja
+        Chart.register(ChartDataLabels);
+
 
         // DUMMY DATA (Sesuai format baru: Investasi & Eksploitasi dalam Task)
         const DUMMY_DATA = [
@@ -544,18 +544,25 @@
             const proc = rawData.filter(d => clean(getKategori(d)) === 'procurement');
             const keu = rawData.filter(d => clean(getKategori(d)) === 'keuangan');
 
+            // Save to cache for AI
+            analysisCache.maint = summary.find(d => clean(getNama(d)).includes('maintenance'));
+            analysisCache.inv = summary.find(d => clean(getNama(d)).includes('investasi'));
+            analysisCache.eks = summary.find(d => clean(getNama(d)).includes('eksploitasi'));
+            analysisCache.ops = ops;
+            analysisCache.milestones = milestones;
+
             renderHomeSummary(summary);
             renderMilestones(milestones);
             renderOperasionalCards(ops);
             
-            renderChart('chartMaintenance', maint, ['#10B981', '#059669'], charts.main);
-            renderChart('chartProcurement', proc, ['#F59E0B', '#D97706'], charts.proc);
-            renderChart('chartKeuangan', keu, ['#EF4444', '#DC2626'], charts.keu);
+            renderChart('chartMaintenance', maint, ['#10B981', '#059669']);
+            renderChart('chartProcurement', proc, ['#F59E0B', '#D97706']);
+            renderChart('chartKeuangan', keu, ['#EF4444', '#DC2626']);
 
             renderMaintenanceDetail(maint);
-            renderProcurementDetail(proc);
+            renderList('listProcurement', proc, 'yellow');
                        
-            runAIAnalysis();
+            runExpertAI();//Run AI on load
         }
 
         // ==========================================
@@ -687,7 +694,7 @@
                         if (today > tDate) {
                             card.classList.add('late');
                             statusEl.innerHTML = `<span class="text-red-400 font-bold">TERLAMBAT!</span>`;
-                            aiHtml += `<div class='text-red-400 bg-sugar-dark p-2 rounded mb-2'>
+                                                        aiHtml += `<div class='text-red-400 bg-sugar-dark p-2 rounded mb-2'>
                                 <i class="fas fa-exclamation-circle mr-1"></i> <strong>${item.name}</strong> melewati batas target (${formatDateDisplay(tStr)}).
                             </div>`;
                         } else {
@@ -699,13 +706,11 @@
                          if (rDate > tDate) {
                              statusEl.innerHTML = `<span class="text-yellow-400">Terlambat (Berpotensi menyebabkan steam test mundur)</span>`;
                          } else {
-                             statusEl.innerHTML = `<span class="text-green-400">Tepat Waktu</span>`;
+                             statusEl.innerHTML = `<span class="text-green-400">Selesai Tepat Waktu</span>`;
                          }
                     }
+                  });
                 }
-            });
-            document.getElementById('aiPersiapanContent').innerHTML = aiHtml || "<p class='text-green-400'>Semua milestone sesuai jadwal.</p>";
-        }
 
         // ==========================================
         // RENDER OPERASIONAL
@@ -721,8 +726,7 @@
                 { key: 'or', name: 'OR', color: 'orange' },
                 { key: 'losses', name: 'Total Losses', color: 'gray' }
             ];
-            let aiHtml = "";
-
+          
             items.forEach(item => {
                 const found = data.find(d => clean(getNama(d)).includes(item.key));
                 const elVal = document.getElementById(`val-${item.key}`);
@@ -759,22 +763,22 @@
                     }
                 }
             });
-            document.getElementById('aiOperasionalContent').innerHTML = aiHtml || "<p class='text-green-400'>Operasional Optimal.</p>";
-        }
+           }
 
         // ==========================================
         // RENDER MAINTENANCE DETAIL
         // ==========================================
         function renderMaintenanceDetail(data) {
             const c = document.getElementById('listMaintenance');
-            let aiHtml = "";
+            if(data.length === 0) {
+            c.innerHTML = "<p class='text-gray-500 text-center'>Tidak ada data maintenance</p>";
+                return;
+            }
             c.innerHTML = data.map(item => {
                 const t = parseNum(getTarget(item));
                 const r = parseNum(getRealisasi(item));
                 const selisih = r - t;
                 const nama = getNama(item);
-
-                if (selisih < 0) aiHtml += `<div class='mt-2 text-xs text-red-400 bg-sugar-dark p-2 rounded'><i class="fas fa-exclamation-triangle mr-1"></i> <strong>${nama}</strong> tertunda ${Math.abs(selisih).toFixed(2)}%.</div>`;
 
                 return `
                     <div class="bg-sugar-dark p-3 rounded-lg border-l-2 ${selisih < 0 ? 'border-red-500' : 'border-green-500'}">
@@ -785,45 +789,40 @@
                         <div class="text-gray-500 text-[10px]">Target: ${t}% | Realisasi: ${r}%</div>
                     </div>`;
             }).join('');
-            document.getElementById('aiMaintenanceContent').innerHTML = aiHtml || "<p class='text-green-400'>Tidak ada keterlambatan maintenance.</p>";
-        }
-
-        // ==========================================
-        // RENDER PROCUREMENT DETAIL
-        // ==========================================
-        function renderProcurementDetail(data) {
-            const c = document.getElementById('listProcurement');
-            let aiHtml = "";
+            }
+            function renderList(containerId, data, color) {
+            const c = document.getElementById(containerId);
+            if(data.length === 0) {
+                c.innerHTML = "<p class='text-gray-500 text-center'>Tidak ada data</p>";
+                return;
+            }
             c.innerHTML = data.map(item => {
-                const t = parseNum(getTarget(item));
-                const r = parseNum(getRealisasi(item));
-                const selisih = r - t;
-                const nama = getNama(item);
-
-                if (selisih < 0) aiHtml += `<div class='mt-2 text-xs text-red-400 bg-sugar-dark p-2 rounded'><i class="fas fa-exclamation-triangle mr-1"></i> <strong>${nama}</strong> tertunda ${Math.abs(selisih).toFixed(2)}%.</div>`;
-
-                return `
-                    <div class="bg-sugar-dark p-3 rounded-lg border-l-2 ${selisih < 0 ? 'border-red-500' : 'border-green-500'}">
-                        <div class="flex justify-between text-xs mb-1">
-                            <span class="font-semibold">${nama}</span>
-                            <span class="${selisih < 0 ? 'text-red-400' : 'text-green-400'}">${selisih > 0 ? '+' : ''}${selisih.toFixed(2)}%</span>
-                        </div>
-                        <div class="text-gray-500 text-[10px]">Target: ${t}% | Realisasi: ${r}%</div>
-                    </div>`;
+                const t = parseNum(getTarget(item)) || 100; const r = parseNum(getRealisasi(item));
+                const pct = Math.round((r/t)*100); const nama = getNama(item);
+                return `<div class="bg-sugar-dark p-3 rounded-lg border-l-2 border-${color}-500">
+                    <div class="flex justify-between text-xs mb-1"><span class="font-semibold">${nama}</span><span>${pct}%</span></div>
+                    <div class="w-full bg-gray-700 rounded-full h-2"><div class="progress-bar bg-${color}-500 h-2 rounded-full" style="width: ${pct}%"></div></div></div>`;
             }).join('');
-            document.getElementById('aiProcurementContent').innerHTML = aiHtml || "<p class='text-green-400'>Tidak ada keterlambatan pengadaan barang dan jasa.</p>";
         }
 
         // ==========================================
-        // GRAFIK & LIST LAINNYA
+        // GRAFIK (DIPERBAIKI)
         // ==========================================
-        function renderChart(canvasId, data, colors, existingChart) {
-            const ctx = document.getElementById(canvasId).getContext('2d');
+        function renderChart(canvasId, data, colors) {
+            const ctx = document.getElementById(canvasId);
+            if (!ctx) return; // Safety check
+
             const labels = data.map(d => getNama(d) || 'Unknown');
             const targets = data.map(d => parseNum(getTarget(d)));
             const realisasi = data.map(d => parseNum(getRealisasi(d)));
-            if (existingChart) existingChart.destroy();
-            Chart.register(ChartDataLabels);
+            
+            // Destroy existing chart instance
+            let chartInstance = Chart.getChart(canvasId);
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            // Create new chart
             new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -837,56 +836,109 @@
             });
         }
 
-        function renderList(containerId, data, color) {
-            const c = document.getElementById(containerId);
-            c.innerHTML = data.map(item => {
-                const t = parseNum(getTarget(item)) || 100;
-                const r = parseNum(getRealisasi(item));
-                const pct = Math.round((r/t)*100);
-                const nama = getNama(item);
-                return `<div class="bg-sugar-dark p-3 rounded-lg border-l-2 border-${color}-500">
-                    <div class="flex justify-between text-xs mb-1"><span class="font-semibold">${nama}</span><span>${pct}%</span></div>
-                    <div class="w-full bg-gray-700 rounded-full h-2"><div class="progress-bar bg-${color}-500 h-2 rounded-full" style="width: ${pct}%"></div></div>
-                </div>`;
-            }).join('');
-        }
-
         // ==========================================
-        // AI SUMMARY HOME
+        // AI EXPERT LOGIC
         // ==========================================
-        function runAIAnalysis() {
+        function runExpertAI() {
             const container = document.getElementById('aiHomeContent');
-            let issues = [];
+            container.innerHTML = `<p class="text-purple-400 animate-pulse"><i class="fas fa-spinner mr-2"></i>Analisisis Data Multi-Dimensi...</p>`;
             
-            const summary = rawData.filter(d => clean(getKategori(d)) === 'summary');
-            summary.forEach(item => {
-                const t = parseNum(getTarget(item));
-                const r = parseNum(getRealisasi(item));
-                const nama = getNama(item);
-                // Logic sederhana: jika realisasi < target -> warning
-                if (r < t) {
-                    issues.push(`<span class='text-yellow-400'>${nama}</span> (Tidak tercapai)`);
-                }
-            });
+            setTimeout(() => {
+                let expertAnalysis = [];
+                let criticalIssues = [];
 
-            const milestones = rawData.filter(d => clean(getKategori(d)) === 'milestone');
-            const today = new Date();
-            milestones.forEach(item => {
-                const tDate = parseDate(getTarget(item));
-                const rDate = parseDate(getRealisasi(item));
-                if(tDate && today > tDate && !rDate) {
-                    issues.push(`<span class='text-red-400'>Milestone ${getNama(item)}</span> terlambat`);
-                }
-            });
+                // 1. ANALISIS KETERLAMBATAN MAINTENANCE
+                const maintData = analysisCache.maint;
+                const maintProgress = maintData ? parseNum(getRealisasi(maintData)) : 0;
+                
+                if (maintProgress < 100) {
+                    const startGiling = analysisCache.milestones.find(m => clean(getNama(m)).includes('giling'));
+                    const tglGiling = startGiling ? parseDate(getTarget(startGiling)) : null;
+                    const today = new Date();
+                    const daysUntilGiling = tglGiling ? Math.ceil((tglGiling - today) / (1000 * 60 * 60 * 24)) : 0;
 
-            if (issues.length === 0) {
-                container.innerHTML = `<div class="p-4 bg-green-900/50 rounded text-green-300"><i class="fas fa-check-circle mr-2"></i>Status Proyek: OPTIMAL.</div>`;
-            } else {
-                container.innerHTML = `<div class="p-4 bg-red-900/50 rounded text-red-300 mb-2"><i class="fas fa-exclamation-triangle mr-2"></i>Peringatan Proyek!</div>
-                <div class="text-xs text-gray-300 space-y-1">
-                    ${issues.map(i => `<p>- ${i} memerlukan perhatian.</p>`).join('')}
-                </div>`;
-            }
+                    if (daysUntilGiling < 14 && daysUntilGiling > 0) {
+                        criticalIssues.push({
+                            level: 'danger',
+                            title: `Peringatan Kritis: Persiapan Giling`,
+                            msg: `Start Giling tinggal <strong>${daysUntilGiling} hari</strong> lagi, namun Maintenance baru <strong>${maintProgress}%</strong>. 
+                                  <br><strong>Sebagai Ahli:</strong> Risiko breakdown awal musim sangat tinggi. Prioritaskan pekerjaan kritis (Boiler, Turbin, Gilingan) segera. Pertimbangkan lembur 3 shift.`
+                        });
+                    } else if (maintProgress < 90) {
+                        criticalIssues.push({
+                            level: 'warning',
+                            title: `Progress Maintenance Rendah`,
+                            msg: `Pekerjaan maintenance masih di bawah 90%. Pastikan procurement sparepart tidak menjadi penghambat.`
+                        });
+                    }
+                }
+
+                // 2. ANALISIS INVESTASI & EKSPLOITASI
+                const invData = analysisCache.inv; const eksData = analysisCache.eks;
+                if (invData && parseNum(getRealisasi(invData)) < parseNum(getTarget(invData))) {
+                     expertAnalysis.push("Keterlambatan proyek <strong>Investasi</strong> akan membatasi peningkatan kapasitas produksi tahun ini. Evaluasi hambatan kontraktor atau pengadaan material.");
+                }
+                if (eksData && parseNum(getRealisasi(eksData)) < parseNum(getTarget(eksData))) {
+                     expertAnalysis.push("Target <strong>Eksploitasi</strong> tidak tercapai, potensi kehilangan hasil panen tebu atau penurunan kuota. Koordinasi dengan unit kebun vital.");
+                }
+
+                // 3. ANALISIS OPERASIONAL (KORELASI)
+                const jamti = analysisCache.ops.find(o => clean(getNama(o)).includes('jamti'));
+                const rendemen = analysisCache.ops.find(o => clean(getNama(o)).includes('rendemen'));
+                const losses = analysisCache.ops.find(o => clean(getNama(o)).includes('losses'));
+
+                // Korelasi Jamti & Maintenance
+                if (jamti && parseNum(getRealisasi(jamti)) > parseNum(getTarget(jamti))) {
+                    expertAnalysis.push(`<strong>Jamti (Jam Tidak Inkam)</strong> melebihi batas maksimal. 
+                                         <br><i class='fas fa-lightbulb text-yellow-400 mr-1'></i>Korelasi: Ini kemungkinan disebabkan oleh persiapan maintenance yang kurang matang (lihat data maintenance).
+                                         <br><strong>Saran Ahli:</strong> Perketat SOP start-up dan perbaikan mesin pengering/gilingan. Jangan abaikan getaran mesin.`);
+                }
+
+                // Korelasi Rendemen & Losses
+                if (rendemen && parseNum(getRealisasi(rendemen)) < parseNum(getTarget(rendemen))) {
+                    let reason = "";
+                    if (losses && parseNum(getRealisasi(losses)) > parseNum(getTarget(losses))) {
+                        reason = "Total Losses tinggi terdeteksi.";
+                    } else {
+                        reason = "Kualitas tebu atau proses ekstraksi.";
+                    }
+                    expertAnalysis.push(`<strong>Rendemen</strong> di bawah target. Faktor: ${reason}.
+                                         <br><strong>Saran Ahli:</strong> Evaluasi pemanasan juice (ijuksasi), tekanan evaporator, dan pH proses. Jika tebu rusak, koordinasi dengan pabrikasi.`);
+                }
+
+                // RENDER OUTPUT
+                let html = "";
+                
+                if (criticalIssues.length > 0) {
+                    criticalIssues.forEach(issue => {
+                        html += `<div class="bg-red-900/40 border-l-4 border-red-500 p-4 rounded mb-4">
+                                    <h4 class="font-bold text-red-400"><i class="fas fa-exclamation-circle mr-2"></i>${issue.title}</h4>
+                                    <p class="text-gray-300 text-xs mt-2 leading-relaxed">${issue.msg}</p>
+                                 </div>`;
+                    });
+                }
+
+                if (expertAnalysis.length > 0) {
+                    html += `<div class="bg-blue-900/30 border-l-4 border-blue-400 p-4 rounded mb-4">
+                                <h4 class="font-bold text-blue-300 mb-2"><i class="fas fa-chart-line mr-2"></i>Analisis Operasional & Strategi</h4>
+                                <ul class="text-xs space-y-3">`;
+                    expertAnalysis.forEach(anal => {
+                        html += `<li class="border-b border-gray-700 pb-2 mb-2">${anal}</li>`;
+                    });
+                    html += `</ul></div>`;
+                }
+
+                if (html === "") {
+                    html = `<div class="bg-green-900/30 border-l-4 border-green-400 p-4 rounded">
+                                <h4 class="font-bold text-green-400"><i class="fas fa-check-circle mr-2"></i>Status: OPTIMAL</h4>
+                                <p class="text-xs mt-2">Semua parameter operasional dan proyek dalam jalur yang baik. Pertahankan kinerja ini.</p>
+                            </div>`;
+                }
+
+                container.innerHTML = html;
+                document.getElementById('aiOperasionalContent').innerHTML = expertAnalysis.map(e => `<p class='mb-2'>${e}</p>`).join('') || "<p class='text-green-400'>Operasional Aman.</p>";
+
+            }, 1000);
         }
 
         // INIT
@@ -897,3 +949,4 @@
     </script>
 </body>
 </html>
+
