@@ -97,11 +97,11 @@
                         <div class="space-y-2">
                             <div class="flex justify-between items-end"><span class="text-xs text-gray-500">Target:</span><span class="text-lg font-bold text-white" id="sum-maint-target">-</span></div>
                             <div class="flex justify-between items-end"><span class="text-xs text-gray-500">Realisasi:</span><span class="text-lg font-bold text-blue-400" id="sum-maint-real">-</span></div>
-                            <div class="flex justify-between items-end border-t border-gray-700 pt-2 mt-2"><span class="text-xs text-gray-400 font-semibold">DEVISAI:</span><span class="text-xl font-bold" id="sum-maint-deviasi">-</span></div>
+                            <div class="flex justify-between items-end border-t border-gray-700 pt-2 mt-2"><span class="text-xs text-gray-400 font-semibold">DEVIASI:</span><span class="text-xl font-bold" id="sum-maint-deviasi">-</span></div>
                         </div>
                     </div>
 
-                    <!-- Card 2: Investasi -->
+                    <!-- Card 2: PR Investasi -->
                     <div class="summary-card p-6 rounded-xl" id="card-investasi">
                         <div class="flex justify-between items-start mb-4">
                             <div><h4 class="text-gray-400 text-sm font-bold">PR Investasi</h4><p class="text-xs text-gray-500">Task</p></div>
@@ -114,10 +114,10 @@
                         </div>
                     </div>
 
-                    <!-- Card 3: Eksploitasi -->
+                    <!-- Card 3: PR Eksploitasi -->
                     <div class="summary-card p-6 rounded-xl" id="card-eksploitasi">
                         <div class="flex justify-between items-start mb-4">
-                            <div><h4 class="text-gray-400 text-sm font-bold">Eksploitasi</h4><p class="text-xs text-gray-500">Task</p></div>
+                            <div><h4 class="text-gray-400 text-sm font-bold">PR Eksploitasi</h4><p class="text-xs text-gray-500">Task</p></div>
                             <i class="fas fa-hard-hat text-3xl text-yellow-400 opacity-50"></i>
                         </div>
                         <div class="space-y-2">
@@ -186,13 +186,13 @@
             <section id="operasional" class="page-section">
                 <h3 class="font-bold text-lg mb-4 text-blue-400"><i class="fas fa-industry mr-2"></i>Data Operasional Pabrik</h3>
                  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
-                    <div class="ops-card p-4 rounded-xl" id="card-tebu"><h4 class="text-gray-400 text-xs">Tebu Giling</h4><h2 class="text-2xl font-bold text-blue-400 my-2" id="val-tebu">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-tebu" class="text-white">-</span></span><span id="pct-tebu" class="font-bold">-</span></div></div>
+                    <div class="ops-card p-4 rounded-xl" id="card-tebu"><h4 class="text-gray-400 text-xs">Tebu Digiling</h4><h2 class="text-2xl font-bold text-blue-400 my-2" id="val-tebu">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-tebu" class="text-white">-</span></span><span id="pct-tebu" class="font-bold">-</span></div></div>
                     <div class="ops-card p-4 rounded-xl" id="card-gula"><h4 class="text-gray-400 text-xs">Hasil Gula</h4><h2 class="text-2xl font-bold text-green-400 my-2" id="val-gula">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-gula" class="text-white">-</span></span><span id="pct-gula" class="font-bold">-</span></div></div>
                     <div class="ops-card p-4 rounded-xl" id="card-rendemen"><h4 class="text-gray-400 text-xs">Rendemen</h4><h2 class="text-2xl font-bold text-yellow-400 my-2" id="val-rendemen">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-rendemen" class="text-white">-</span></span><span id="pct-rendemen" class="font-bold">-</span></div></div>
                     <div class="ops-card p-4 rounded-xl" id="card-tetes"><h4 class="text-gray-400 text-xs">Produksi Tetes</h4><h2 class="text-2xl font-bold text-purple-400 my-2" id="val-tetes">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-tetes" class="text-white">-</span></span><span id="pct-tetes" class="font-bold">-</span></div></div>
                     <div class="ops-card p-4 rounded-xl" id="card-kis"><h4 class="text-gray-400 text-xs">KIS/KES</h4><h2 class="text-2xl font-bold text-cyan-400 my-2" id="val-kis">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-kis" class="text-white">-</span></span><span id="pct-kis" class="font-bold">-</span></div></div>
                     <div class="ops-card p-4 rounded-xl" id="card-jamti"><h4 class="text-gray-400 text-xs">Jamti A/B <span class="text-red-300 text-[10px]">(Max)</span></h4><h2 class="text-2xl font-bold text-red-400 my-2" id="val-jamti">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Batas: <span id="tgt-jamti" class="text-white">-</span></span><span id="pct-jamti" class="font-bold">-</span></div></div>
-                    <div class="ops-card p-4 rounded-xl" id="card-or"><h4 class="text-gray-400 text-xs">OR (Olah Rate)</h4><h2 class="text-2xl font-bold text-orange-400 my-2" id="val-or">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-or" class="text-white">-</span></span><span id="pct-or" class="font-bold">-</span></div></div>
+                    <div class="ops-card p-4 rounded-xl" id="card-or"><h4 class="text-gray-400 text-xs">OR (Overal Recovery)</h4><h2 class="text-2xl font-bold text-orange-400 my-2" id="val-or">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-or" class="text-white">-</span></span><span id="pct-or" class="font-bold">-</span></div></div>
                     <div class="ops-card p-4 rounded-xl" id="card-losses"><h4 class="text-gray-400 text-xs">Total Losses</h4><h2 class="text-2xl font-bold text-gray-400 my-2" id="val-losses">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-losses" class="text-white">-</span></span><span id="pct-losses" class="font-bold">-</span></div></div>
                 </div>
                 <div class="ai-expert-box p-6 rounded-xl">
@@ -273,8 +273,8 @@
         // DUMMY DATA
         const DUMMY_DATA = [
             { Kategori: 'Summary', 'Nama Item': 'Maintenance Pabrik', Target: 100, Realisasi: 75.20, Satuan: '%' },
-            { Kategori: 'Summary', 'Nama Item': 'PR Investasi Pabrik', Target: 50, Realisasi: 30, Satuan: 'Task' },
-            { Kategori: 'Summary', 'Nama Item': 'Eksploitasi', Target: 30, Realisasi: 10, Satuan: 'Task' },
+            { Kategori: 'Summary', 'Nama Item': 'PR Investasi ', Target: 50, Realisasi: 30, Satuan: 'Task' },
+            { Kategori: 'Summary', 'Nama Item': 'PR Eksploitasi', Target: 30, Realisasi: 10, Satuan: 'Task' },
             { Kategori: 'Summary', 'Nama Item': 'Tebu Digiling', Target: 30, Realisasi: 10, Satuan: 'Ton' },
             { Kategori: 'Summary', 'Nama Item': 'Produksi GKP', Target: 30, Realisasi: 10, Satuan: 'Ton' },
             { Kategori: 'Summary', 'Nama Item': 'Rendemen', Target: 30, Realisasi: 10, Satuan: '%' },
@@ -288,8 +288,8 @@
             { Kategori: 'Operasional', 'Nama Item': 'Jamti A/B', Target: 5.0, Realisasi: 8.5, Satuan: '%' },
             { Kategori: 'Maintenance', 'Nama Item': 'Overhaul Mesin', Target: 100, Realisasi: 75.20, Satuan: '%' },
             { Kategori: 'Maintenance', 'Nama Item': 'Boiler Repair', Target: 100, Realisasi: 60.50, Satuan: '%' },
-            { Kategori: 'Procurement', 'Nama Item': 'Sparepart Import', Target: 100, Realisasi: 40, Satuan: '%' },
-            { Kategori: 'Procurement', 'Nama Item': 'Chemical Supply', Target: 100, Realisasi: 90, Satuan: '%' },
+            { Kategori: 'Procurement', 'Nama Item': 'Investasi', Target: 100, Realisasi: 40, Satuan: '%' },
+            { Kategori: 'Procurement', 'Nama Item': 'Eksploitasi', Target: 100, Realisasi: 90, Satuan: '%' },
             { Kategori: 'Keuangan', 'Nama Item': 'Gaji', Target: 2000000000, Realisasi: 1800000000, Satuan: 'Rp' }
         ];
 
@@ -392,22 +392,22 @@
                 if(deviasi < 0) document.getElementById('card-maintenance').classList.add('warning');
                 else document.getElementById('card-maintenance').classList.remove('warning');
             }
-            // 2. Investasi
+            // 2. PR Investasi
             const inv = data.find(d => clean(getNama(d)).includes('investasi'));
             if(inv) {
                 const t = parseNum(getTarget(inv)); const r = parseNum(getRealisasi(inv));
-                const sat = getSatuan(inv) || "Paket"; const pct = t > 0 ? (r/t)*100 : 0;
+                const sat = getSatuan(inv) || "Task"; const pct = t > 0 ? (r/t)*100 : 0;
                 document.getElementById('sum-inv-target').innerText = t.toLocaleString('id-ID') + " " + sat;
                 document.getElementById('sum-inv-real').innerText = r.toLocaleString('id-ID') + " " + sat;
                 const elPct = document.getElementById('sum-inv-pct');
                 elPct.innerText = pct.toFixed(2) + "%";
                 elPct.className = `text-xl font-bold ${r < t ? 'text-red-400' : 'text-green-400'}`;
             }
-            // 3. Eksploitasi
+            // 3. PR Eksploitasi
             const eks = data.find(d => clean(getNama(d)).includes('eksploitasi'));
             if(eks) {
                 const t = parseNum(getTarget(eks)); const r = parseNum(getRealisasi(eks));
-                const sat = getSatuan(eks) || "Paket"; const pct = t > 0 ? (r/t)*100 : 0;
+                const sat = getSatuan(eks) || "Task"; const pct = t > 0 ? (r/t)*100 : 0;
                 document.getElementById('sum-eks-target').innerText = t.toLocaleString('id-ID') + " " + sat;
                 document.getElementById('sum-eks-real').innerText = r.toLocaleString('id-ID') + " " + sat;
                 const elPct = document.getElementById('sum-eks-pct');
@@ -415,7 +415,7 @@
                 elPct.className = `text-xl font-bold ${r < t ? 'text-red-400' : 'text-green-400'}`;
             }
             // 4. Tebu Digiling
-            const eks = data.find(d => clean(getNama(d)).includes('tebu'));
+            const tebu = data.find(d => clean(getNama(d)).includes('tebu'));
             if(tebu) {
                 const t = parseNum(getTarget(tebu)); const r = parseNum(getRealisasi(tebu));
                 const sat = getSatuan(tebu) || "Ton"; const pct = t > 0 ? (r/t)*100 : 0;
@@ -426,7 +426,7 @@
                 elPct.className = `text-xl font-bold ${r < t ? 'text-red-400' : 'text-green-400'}`;
             }
             // 5. Produksi GKP
-            const eks = data.find(d => clean(getNama(d)).includes('produksi'));
+            const prod = data.find(d => clean(getNama(d)).includes('produksi'));
             if(prod) {
                 const t = parseNum(getTarget(prod)); const r = parseNum(getRealisasi(prod));
                 const sat = getSatuan(prod) || "TOn"; const pct = t > 0 ? (r/t)*100 : 0;
