@@ -389,8 +389,8 @@
                             <p>Isi Kategori: <span class="text-yellow-400">Summary</span></p>
                             <ul class="list-disc list-inside ml-2 text-gray-400 mt-1">
                                 <li><strong>Maintenance Pabrik</strong>: Target/Realisasi isi angka persen (contoh: 100). Satuan: %.</li>
-                                <li><strong>PR Investasi Pabrik</strong>: Target/Realisasi isi angka (contoh: 50). Satuan: Paket.</li>
-                                <li><strong>PR Eksploitasi</strong>: Target/Realisasi isi angka (contoh: 12). Satuan: Paket.</li>
+                                <li><strong>PR Investasi Pabrik</strong>: Target/Realisasi isi angka (contoh: 50). Satuan: Task.</li>
+                                <li><strong>PR Eksploitasi</strong>: Target/Realisasi isi angka (contoh: 12). Satuan: Task.</li>
                                 <li><strong>Tebu Digiling</strong>: Target/Realisasi isi angka (contoh: 1000). Satuan: Ton.</li>
                                 <li><strong>Produksi GKP</strong>: Target/Realisasi isi angka (contoh: 120). Satuan: Ton.</li>
                                 <li><strong>Rendemen</strong>: Target/Realisasi isi angka (contoh: 7). Satuan: %.</li>
@@ -419,12 +419,12 @@
         let rawData = [];
         let charts = { ops: null, main: null, proc: null, keu: null };
 
-        // DUMMY DATA (Sesuai format baru: Investasi & Eksploitasi dalam Paket)
+        // DUMMY DATA (Sesuai format baru: Investasi & Eksploitasi dalam Task)
         const DUMMY_DATA = [
             // Summary for Home
             { Kategori: 'Summary', 'Nama Item': 'Maintenance Pabrik', Target: 100, Realisasi: 85.25, Satuan: '%' },
-            { Kategori: 'Summary', 'Nama Item': 'PR Investasi Pabrik', Target: 50, Realisasi: 42, Satuan: 'Paket' },
-            { Kategori: 'Summary', 'Nama Item': 'PR Eksploitasi', Target: 12, Realisasi: 10, Satuan: 'Paket' },
+            { Kategori: 'Summary', 'Nama Item': 'PR Investasi Pabrik', Target: 50, Realisasi: 42, Satuan: 'Task' },
+            { Kategori: 'Summary', 'Nama Item': 'PR Eksploitasi', Target: 12, Realisasi: 10, Satuan: 'Task' },
            
             { Kategori: 'Summary', 'Nama Item': 'Tebu Digiling', Target: 100, Realisasi: 10, Satuan: 'Ton' },
             { Kategori: 'Summary', 'Nama Item': 'Produksi GKP', Target: 120, Realisasi: 12, Satuan: 'Ton' },
@@ -445,7 +445,7 @@
             { Kategori: 'Maintenance', 'Nama Item': 'Boiler Repair', Target: 100, Realisasi: 40.50, Satuan: '%' },
             
             // Procurement Detail
-            { Kategori: 'Procurement', 'Nama Item': 'Investasi Teknik', Target: 100, Realisasi: 20, Satuan: 'Task' },
+            { Kategori: 'Procurement', 'Nama Item': 'Investasi Pabrik', Target: 100, Realisasi: 20, Satuan: 'Task' },
             { Kategori: 'Procurement', 'Nama Item': 'Eksploitasi Pengolahan', Target: 100, Realisasi: 20, Satuan: 'Task' },
            
             // Keuangan
@@ -582,7 +582,7 @@
             if(inv) {
                 const t = parseNum(getTarget(inv));
                 const r = parseNum(getRealisasi(inv));
-                const sat = getSatuan(inv) || "Paket"; // Ambil satuan atau default 'Paket'
+                const sat = getSatuan(inv) || "Task"; // Ambil satuan atau default 'Task'
                 const pct = t > 0 ? (r/t)*100 : 0;
                 
                 document.getElementById('sum-inv-target').innerText = t.toLocaleString('id-ID') + " " + sat;
@@ -597,7 +597,7 @@
             if(eks) {
                 const t = parseNum(getTarget(eks));
                 const r = parseNum(getRealisasi(eks));
-                const sat = getSatuan(eks) || "Paket"; // Ambil satuan atau default 'Paket'
+                const sat = getSatuan(eks) || "Task"; // Ambil satuan atau default 'Task'
                 const pct = t > 0 ? (r/t)*100 : 0;
                 
                 document.getElementById('sum-eks-target').innerText = t.toLocaleString('id-ID') + " " + sat;
