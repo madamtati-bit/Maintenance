@@ -43,6 +43,13 @@
             border: 1px solid rgba(147, 51, 234, 0.3);
             box-shadow: 0 0 15px rgba(147, 51, 234, 0.1);
         }
+
+
+        /* Custom Inventory Card Styles */
+        .inv-card-gula { background: linear-gradient(135deg, #fff7ed, #fed7aa); color: #9a3412; border: 1px solid #fdba74; }
+        .inv-card-tetes { background: linear-gradient(135deg, #1e1b4b, #312e81); color: #c7d2fe; border: 1px solid #4338ca; }
+        .inv-card-kapur { background: linear-gradient(135deg, #f3f4f6, #e5e7eb); color: #374151; border: 1px solid #9ca3af; }
+
         
         ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-track { background: #1a1a2e; }
@@ -77,7 +84,7 @@
         <header class="flex justify-between items-center mb-8">
             <div>
                 <h2 class="text-2xl font-bold text-white" id="pageTitle">Dashboard Utama</h2>
-                <p class="text-gray-400" id="pageSubtitle">Kinerja Pabrik.</p>
+                <p class="text-gray-400" id="pageSubtitle">Kinerja Pabrik dan Progress Overhoul.</p>
             </div>
             <div class="flex items-center gap-4">
                 <span id="syncStatus" class="text-xs text-gray-500 bg-sugar-card px-3 py-1 rounded-full"><i class="fas fa-wifi mr-1"></i> Initializing...</span>
@@ -229,7 +236,116 @@
                     </div>
                 </div>
             </section>
+            
+                        <!-- PRODUCT INVENTORY (HALAMAN BARU) -->
+            <section id="inventory" class="page-section">
+                <h3 class="font-bold text-lg mb-6 text-white"><i class="fas fa-boxes-stacked mr-2"></i>Product Inventory Status</h3>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    <!-- Card Gula -->
+                    <div class="inv-card-gula p-6 rounded-2xl shadow-xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 opacity-10 mt-[-20px] mr-[-20px]">
+                            <i class="fas fa-cubes text-9xl"></i>
+                        </div>
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-3 mb-4 border-b border-orange-300/30 pb-2">
+                                <i class="fas fa-sugar-cane text-2xl"></i>
+                                <div>
+                                    <h4 class="font-bold text-xl">GULA</h4>
+                                    <p class="text-xs opacity-75">Kristal Putih</p>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-6 mt-4">
+                                <div>
+                                    <p class="text-xs opacity-75 uppercase font-semibold">Persediaan Gudang</p>
+                                    <p class="text-2xl font-bold" id="inv-gula-stock">- <span class="text-sm font-normal">Kw</span></p>
+                                </div>
+                                <div>
+                                    <p class="text-xs opacity-75 uppercase font-semibold">DO Terbit</p>
+                                    <p class="text-2xl font-bold" id="inv-gula-do">- <span class="text-sm font-normal">Kw</span></p>
+                                </div>
+                                <div>
+                                    <p class="text-xs opacity-75 uppercase font-semibold">Sisa DO</p>
+                                    <p class="text-2xl font-bold text-blue-900" id="inv-gula-sisa">- <span class="text-sm font-normal">Kw</span></p>
+                                </div>
+                                <div>
+                                    <p class="text-xs opacity-75 uppercase font-semibold">Free Stock</p>
+                                    <p class="text-3xl font-bold text-green-800" id="inv-gula-free">- <span class="text-sm font-normal">Kw</span></p>
+                                </div>
+                            </div>
+                            <div class="mt-4 bg-orange-900/20 rounded-full h-2">
+                                <div class="bg-orange-600 h-2 rounded-full" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <!-- Card Tetes -->
+                    <div class="inv-card-tetes p-6 rounded-2xl shadow-xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 opacity-10 mt-[-20px] mr-[-20px]">
+                            <i class="fas fa-tint text-9xl"></i>
+                        </div>
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-3 mb-4 border-b border-indigo-300/30 pb-2">
+                                <i class="fas fa-fill-drip text-2xl text-yellow-400"></i>
+                                <div>
+                                    <h4 class="font-bold text-xl text-white">TETES</h4>
+                                    <p class="text-xs opacity-75 text-gray-300">Molasses</p>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-6 mt-4">
+                                <div>
+                                    <p class="text-xs opacity-75 uppercase font-semibold text-gray-400">Persediaan Tangki</p>
+                                    <p class="text-2xl font-bold text-white" id="inv-tetes-stock">- <span class="text-sm font-normal text-gray-400">Ton</span></p>
+                                </div>
+                                <div>
+                                    <p class="text-xs opacity-75 uppercase font-semibold text-gray-400">DO Terbit</p>
+                                    <p class="text-2xl font-bold text-white" id="inv-tetes-do">- <span class="text-sm font-normal text-gray-400">Ton</span></p>
+                                </div>
+                                <div>
+                                    <p class="text-xs opacity-75 uppercase font-semibold text-gray-400">Sisa DO</p>
+                                    <p class="text-2xl font-bold text-yellow-300" id="inv-tetes-sisa">- <span class="text-sm font-normal text-gray-400">Ton</span></p>
+                                </div>
+                                <div>
+                                    <p class="text-xs opacity-75 uppercase font-semibold text-gray-400">Free Stock</p>
+                                    <p class="text-3xl font-bold text-green-400" id="inv-tetes-free">- <span class="text-sm font-normal text-gray-400">Ton</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card Kapur (Full Width) -->
+                <div class="inv-card-kapur p-6 rounded-2xl shadow-xl mb-8">
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-gray-300 p-3 rounded-full text-gray-700">
+                                <i class="fas fa-mountain text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl text-gray-800">KAPUR</h4>
+                                <p class="text-xs text-gray-500">Material Pabrik</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-8 w-full md:w-auto text-center">
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase font-semibold">Persediaan</p>
+                                <p class="text-2xl font-bold text-gray-800" id="inv-kapur-stock">- <span class="text-sm font-normal">Ton</span></p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase font-semibold">Pemakaian</p>
+                                <p class="text-2xl font-bold text-blue-700" id="inv-kapur-pakai">- <span class="text-sm font-normal">Ton</span></p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase font-semibold">Sisa</p>
+                                <p class="text-2xl font-bold text-red-700" id="inv-kapur-sisa">- <span class="text-sm font-normal">Ton</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
             <!-- KEUANGAN -->
             <section id="keuangan" class="page-section">
                 <div class="glass-dark p-6 rounded-xl mb-6 border-t-4 border-red-500">
@@ -250,9 +366,18 @@
                     <button onclick="loadSheetData()" class="bg-sugar-accent hover:bg-pink-600 px-6 py-2 rounded-lg font-semibold transition">Simpan & Ambil Data</button>
                     
                     <div class="mt-6 text-xs text-gray-500 bg-sugar-dark p-4 rounded border border-gray-800">
-                        <p class="font-bold text-gray-300 mb-2">Panduan Format:</p>
+                        <p class="font-bold text-gray-300 mb-2">Panduan Format sheet (Update):</p>
                         <p>Header: Kategori, Nama Item, Target, Realisasi, Satuan</p>
-                        <p class="mt-2">Kategori: Summary, Milestone, Operasional, Maintenance, Procurement, Keuangan</p>
+                        <p class="mt-2">Kategori yang tersedia:</p>
+                        <ul class="list-disc list-inside">
+                            <li>Summary (Maintenance, Investasi, Eksploitasi)</li>
+                            <li>Milestone (Tanggal)</li>
+                            <li>Operasional</li>
+                            <li>Maintenance (Detail)</li>
+                            <li>Procurement (Detail)</li>
+                            <li>Inventory (Gula, Tetes, Kapur)</li>
+                        </ul>
+                        <p class="mt-2 text-yellow-400">Untuk Inventory, gunakan kolom Target/Realisasi sebagai tempat nilai, atau tambahkan kolom khusus: Persediaan, DO_Terbit, Sisa_DO, Free_Stock, Pemakaian.</p>
                     </div>
                 </div>
             </section>
@@ -260,6 +385,7 @@
     </main>
 
     <script>
+        
         // ==========================================
         // KONFIGURASI & VARIABEL
         // ==========================================
@@ -292,6 +418,11 @@
             { Kategori: 'Procurement', 'Nama Item': 'Investasi', Target: 100, Realisasi: 40, Satuan: '%' },
             { Kategori: 'Procurement', 'Nama Item': 'Eksploitasi', Target: 100, Realisasi: 90, Satuan: '%' },
             { Kategori: 'Keuangan', 'Nama Item': 'Gaji', Target: 2000000000, Realisasi: 1800000000, Satuan: 'Rp' }
+
+             // DATA INVENTORY BARU
+            { Kategori: 'Inventory', 'Nama Item': 'Gula', Persediaan: 5000, 'DO Terbit': 2000, 'Sisa DO': 500, 'Free Stock': 3500, Satuan: 'Kw' },
+            { Kategori: 'Inventory', 'Nama Item': 'Tetes', Persediaan: 1200, 'DO Terbit': 800, 'Sisa DO': 100, 'Free Stock': 400, Satuan: 'Ton' },
+            { Kategori: 'Inventory', 'Nama Item': 'Kapur', Persediaan: 300, Pemakaian: 50, Sisa: 250, Satuan: 'Ton' }
         ];
 
         // ==========================================
@@ -349,7 +480,8 @@
             const maint = rawData.filter(d => clean(getKategori(d)) === 'maintenance');
             const proc = rawData.filter(d => clean(getKategori(d)) === 'procurement');
             const keu = rawData.filter(d => clean(getKategori(d)) === 'keuangan');
-
+            const inventory = rawData.filter(d => clean(getKategori(d)) === 'inventory');
+            
             // Save to cache for AI
             analysisCache.maint = summary.find(d => clean(getNama(d)).includes('maintenance'));
             analysisCache.inv = summary.find(d => clean(getNama(d)).includes('investasi'));
@@ -363,6 +495,7 @@
             renderHomeSummary(summary);
             renderMilestones(milestones);
             renderOperasionalCards(ops);
+            renderInventory(inventory); // Render Inventory
             
             // Render Charts
             renderChart('chartMaintenance', maint, ['#10B981', '#059669']);
@@ -374,6 +507,40 @@
             
             runExpertAI(); // Run AI on load
         }
+
+                // ==========================================
+        // RENDER INVENTORY (BARU)
+        // ==========================================
+        function renderInventory(data) {
+            // Find Data
+            const gula = data.find(d => clean(getNama(d)).includes('gula'));
+            const tetes = data.find(d => clean(getNama(d)).includes('tetes'));
+            const kapur = data.find(d => clean(getNama(d)).includes('kapur'));
+
+            // Render Gula
+            if(gula) {
+                document.getElementById('inv-gula-stock').innerText = parseNum(gula.Persediaan).toLocaleString('id-ID');
+                document.getElementById('inv-gula-do').innerText = parseNum(gula['DO Terbit'] || gula['DO_Terbit']).toLocaleString('id-ID');
+                document.getElementById('inv-gula-sisa').innerText = parseNum(gula['Sisa DO'] || gula['Sisa_DO']).toLocaleString('id-ID');
+                document.getElementById('inv-gula-free').innerText = parseNum(gula['Free Stock'] || gula['Free_Stock']).toLocaleString('id-ID');
+            }
+
+            // Render Tetes
+            if(tetes) {
+                document.getElementById('inv-tetes-stock').innerText = parseNum(tetes.Persediaan).toLocaleString('id-ID');
+                document.getElementById('inv-tetes-do').innerText = parseNum(tetes['DO Terbit'] || tetes['DO_Terbit']).toLocaleString('id-ID');
+                document.getElementById('inv-tetes-sisa').innerText = parseNum(tetes['Sisa DO'] || tetes['Sisa_DO']).toLocaleString('id-ID');
+                document.getElementById('inv-tetes-free').innerText = parseNum(tetes['Free Stock'] || tetes['Free_Stock']).toLocaleString('id-ID');
+            }
+
+            // Render Kapur
+            if(kapur) {
+                document.getElementById('inv-kapur-stock').innerText = parseNum(kapur.Persediaan).toLocaleString('id-ID');
+                document.getElementById('inv-kapur-pakai').innerText = parseNum(kapur.Pemakaian).toLocaleString('id-ID');
+                document.getElementById('inv-kapur-sisa').innerText = parseNum(kapur.Sisa).toLocaleString('id-ID');
+            }
+        }
+
 
         // ==========================================
         // RENDER HOME SUMMARY
