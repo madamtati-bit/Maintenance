@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SUGARDASH - Expert System</title>
+    <title>SUGARDASH - Pabrik Gula Sei Semayang</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
@@ -209,19 +209,19 @@
                             <div class="grid grid-cols-2 gap-6 mt-4">
                                 <div>
                                     <p class="text-xs opacity-75 uppercase font-semibold">Persediaan Gudang</p>
-                                    <p class="text-2xl font-bold" id="inv-gula-stock">- <span class="text-sm font-normal">Kw</span></p>
+                                    <p class="text-2xl font-bold" id="inv-gula-stock">- <span class="text-sm font-normal">TOn</span></p>
                                 </div>
                                 <div>
                                     <p class="text-xs opacity-75 uppercase font-semibold">DO Terbit</p>
-                                    <p class="text-2xl font-bold" id="inv-gula-do">- <span class="text-sm font-normal">Kw</span></p>
+                                    <p class="text-2xl font-bold" id="inv-gula-do">- <span class="text-sm font-normal">Ton</span></p>
                                 </div>
                                 <div>
                                     <p class="text-xs opacity-75 uppercase font-semibold">Sisa DO</p>
-                                    <p class="text-2xl font-bold text-blue-900" id="inv-gula-sisa">- <span class="text-sm font-normal">Kw</span></p>
+                                    <p class="text-2xl font-bold text-blue-900" id="inv-gula-sisa">- <span class="text-sm font-normal">Ton</span></p>
                                 </div>
                                 <div>
                                     <p class="text-xs opacity-75 uppercase font-semibold">Free Stock</p>
-                                    <p class="text-3xl font-bold text-green-800" id="inv-gula-free">- <span class="text-sm font-normal">Kw</span></p>
+                                    <p class="text-3xl font-bold text-green-800" id="inv-gula-free">- <span class="text-sm font-normal">Ton</span></p>
                                 </div>
                             </div>
                             <div class="mt-4 bg-orange-900/20 rounded-full h-2">
@@ -327,7 +327,7 @@
                             <li>Procurement (Detail)</li>
                             <li>Inventory (Gula, Tetes, Kapur)</li>
                         </ul>
-                        <p class="mt-2 text-yellow-400">Untuk Inventory, gunakan kolom Target/Realisasi sebagai tempat nilai, atau tambahkan kolom khusus: Persediaan, DO_Terbit, Sisa_DO, Free_Stock, Pemakaian.</p>
+                        <p class="mt-2 text-yellow-400">Untuk Inventory, gunakan kolom Target/Realisasi sebagai tempat nilai, atau tambahkan kolom khusus: Persediaan, DO_Terbit, Sisa_DO, Free_Stock, Pemakaian, Sisa.</p>
                     </div>
                 </div>
             </section>
@@ -367,7 +367,7 @@
             { Kategori: 'Keuangan', 'Nama Item': 'Gaji', Target: 2000000000, Realisasi: 1800000000, Satuan: 'Rp' },
             
             // DATA INVENTORY BARU
-            { Kategori: 'Inventory', 'Nama Item': 'Gula', Persediaan: 5000, 'DO Terbit': 2000, 'Sisa DO': 500, 'Free Stock': 3500, Satuan: 'Kw' },
+            { Kategori: 'Inventory', 'Nama Item': 'Gula', Persediaan: 5000, 'DO Terbit': 2000, 'Sisa DO': 500, 'Free Stock': 3500, Satuan: 'Ton' },
             { Kategori: 'Inventory', 'Nama Item': 'Tetes', Persediaan: 1200, 'DO Terbit': 800, 'Sisa DO': 100, 'Free Stock': 400, Satuan: 'Ton' },
             { Kategori: 'Inventory', 'Nama Item': 'Kapur', Persediaan: 300, Pemakaian: 50, Sisa: 250, Satuan: 'Ton' }
         ];
