@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SUGARDASH - Pabrik Gula Sei Semayang</title>
+    <title>SUGARDASH - Expert System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
@@ -35,6 +35,7 @@
         
         .summary-card { background: linear-gradient(145deg, rgba(22, 33, 62, 1), rgba(15, 52, 96, 0.8)); border: 1px solid rgba(59, 130, 246, 0.3); }
         .summary-card.warning { border-color: rgba(239, 68, 68, 0.5); background: linear-gradient(145deg, rgba(40, 20, 20, 1), rgba(50, 20, 20, 0.8)); }
+        
         .milestone-card { background: #16213e; border-left: 4px solid #4ade80; }
         .milestone-card.late { border-left-color: #ef4444; background: rgba(239, 68, 68, 0.1); }
         
@@ -71,6 +72,9 @@
             <button onclick="navigateTo('home')" class="nav-item active w-full text-left flex items-center gap-3 p-3 rounded-lg transition hover:bg-sugar-blue"><i class="fas fa-home"></i> Dashboard Utama</button>
             <button onclick="navigateTo('operasional')" class="nav-item w-full text-left flex items-center gap-3 p-3 rounded-lg transition hover:bg-sugar-blue"><i class="fas fa-industry"></i> Kinerja Operasional</button>
             <button onclick="navigateTo('persiapan')" class="nav-item w-full text-left flex items-center gap-3 p-3 rounded-lg transition hover:bg-sugar-blue"><i class="fas fa-tools"></i> Persiapan Pabrik</button>
+            <!-- ITEM BARU: PRODUCT INVENTORY -->
+            <button onclick="navigateTo('inventory')" class="nav-item w-full text-left flex items-center gap-3 p-3 rounded-lg transition hover:bg-sugar-blue"><i class="fas fa-boxes-stacked"></i> Product Inventory</button>
+            <!-- AKHIR ITEM BARU -->
             <button onclick="navigateTo('keuangan')" class="nav-item w-full text-left flex items-center gap-3 p-3 rounded-lg transition hover:bg-sugar-blue"><i class="fas fa-wallet"></i> Kinerja Keuangan</button>
             <button onclick="checkPassword()" class="nav-item w-full text-left flex items-center gap-3 p-3 rounded-lg transition hover:bg-sugar-blue"><i class="fas fa-sliders-h"></i> Pengaturan</button>
         </nav>
@@ -81,7 +85,7 @@
         <header class="flex justify-between items-center mb-8">
             <div>
                 <h2 class="text-2xl font-bold text-white" id="pageTitle">Dashboard Utama</h2>
-                <p class="text-gray-400" id="pageSubtitle">Kinerja Pabrik dan Progress Overhoul.</p>
+                <p class="text-gray-400" id="pageSubtitle">Analisis Sistem Pakar Gula.</p>
             </div>
             <div class="flex items-center gap-4">
                 <span id="syncStatus" class="text-xs text-gray-500 bg-sugar-card px-3 py-1 rounded-full"><i class="fas fa-wifi mr-1"></i> Initializing...</span>
@@ -93,117 +97,55 @@
             <!-- HOME -->
             <section id="home" class="page-section active">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <!-- Card 1: Maintenance -->
                     <div class="summary-card p-6 rounded-xl" id="card-maintenance">
-                        <div class="flex justify-between items-start mb-4">
-                            <div><h4 class="text-gray-400 text-sm font-bold">Maintenance Pabrik</h4><p class="text-xs text-gray-500">Progress Fisik</p></div>
-                            <i class="fas fa-wrench text-3xl text-blue-400 opacity-50"></i>
-                        </div>
+                        <div class="flex justify-between items-start mb-4"><div><h4 class="text-gray-400 text-sm font-bold">Maintenance Pabrik</h4><p class="text-xs text-gray-500">Progress Fisik</p></div><i class="fas fa-wrench text-3xl text-blue-400 opacity-50"></i></div>
                         <div class="space-y-2">
                             <div class="flex justify-between items-end"><span class="text-xs text-gray-500">Target:</span><span class="text-lg font-bold text-white" id="sum-maint-target">-</span></div>
                             <div class="flex justify-between items-end"><span class="text-xs text-gray-500">Realisasi:</span><span class="text-lg font-bold text-blue-400" id="sum-maint-real">-</span></div>
-                            <div class="flex justify-between items-end border-t border-gray-700 pt-2 mt-2"><span class="text-xs text-gray-400 font-semibold">DEVIASI:</span><span class="text-xl font-bold" id="sum-maint-deviasi">-</span></div>
+                            <div class="flex justify-between items-end border-t border-gray-700 pt-2 mt-2"><span class="text-xs text-gray-400 font-semibold">DEVISAI:</span><span class="text-xl font-bold" id="sum-maint-deviasi">-</span></div>
                         </div>
                     </div>
-
-                    <!-- Card 2: PR Investasi -->
                     <div class="summary-card p-6 rounded-xl" id="card-investasi">
-                        <div class="flex justify-between items-start mb-4">
-                            <div><h4 class="text-gray-400 text-sm font-bold">PR Investasi</h4><p class="text-xs text-gray-500">SPPBJ Terbit</p></div>
-                            <i class="fas fa-chart-line text-3xl text-green-400 opacity-50"></i>
-                        </div>
+                        <div class="flex justify-between items-start mb-4"><div><h4 class="text-gray-400 text-sm font-bold">PR Investasi</h4><p class="text-xs text-gray-500">Paket/Buah</p></div><i class="fas fa-chart-line text-3xl text-green-400 opacity-50"></i></div>
                         <div class="space-y-2">
                             <div class="flex justify-between items-end"><span class="text-xs text-gray-500">Target:</span><span class="text-lg font-bold text-white" id="sum-inv-target">-</span></div>
                             <div class="flex justify-between items-end"><span class="text-xs text-gray-500">Realisasi:</span><span class="text-lg font-bold text-green-400" id="sum-inv-real">-</span></div>
                             <div class="flex justify-between items-end border-t border-gray-700 pt-2 mt-2"><span class="text-xs text-gray-400 font-semibold">PERSEN:</span><span class="text-xl font-bold" id="sum-inv-pct">-</span></div>
                         </div>
                     </div>
-
-                    <!-- Card 3: PR Eksploitasi -->
                     <div class="summary-card p-6 rounded-xl" id="card-eksploitasi">
-                        <div class="flex justify-between items-start mb-4">
-                            <div><h4 class="text-gray-400 text-sm font-bold">PR Eksploitasi</h4><p class="text-xs text-gray-500">SPPBJ Terbit</p></div>
-                            <i class="fas fa-hard-hat text-3xl text-yellow-400 opacity-50"></i>
-                        </div>
+                        <div class="flex justify-between items-start mb-4"><div><h4 class="text-gray-400 text-sm font-bold">Eksploitasi</h4><p class="text-xs text-gray-500">Paket/Buah</p></div><i class="fas fa-hard-hat text-3xl text-yellow-400 opacity-50"></i></div>
                         <div class="space-y-2">
                             <div class="flex justify-between items-end"><span class="text-xs text-gray-500">Target:</span><span class="text-lg font-bold text-white" id="sum-eks-target">-</span></div>
                             <div class="flex justify-between items-end"><span class="text-xs text-gray-500">Realisasi:</span><span class="text-lg font-bold text-yellow-400" id="sum-eks-real">-</span></div>
                             <div class="flex justify-between items-end border-t border-gray-700 pt-2 mt-2"><span class="text-xs text-gray-400 font-semibold">PERSEN:</span><span class="text-xl font-bold" id="sum-eks-pct">-</span></div>
                         </div>
                     </div>
-              
-          <!-- Card 4: Tebu Digiling -->
-                    <div class="summary-card p-6 rounded-xl" id="card-tebu">
-                        <div class="flex justify-between items-start mb-4">
-                            <div><h4 class="text-gray-400 text-sm font-bold">Tebu Digiling</h4><p class="text-xs text-gray-500">Sampai dengan Hari ini</p></div>
-                            <i class="fas fa-hard-hat text-3xl text-yellow-400 opacity-50"></i>
-                        </div>
-                        <div class="space-y-2">
-                            <div class="flex justify-between items-end"><span class="text-xs text-gray-500">Target:</span><span class="text-lg font-bold text-white" id="sum-tebu-target">-</span></div>
-                            <div class="flex justify-between items-end"><span class="text-xs text-gray-500">Realisasi:</span><span class="text-lg font-bold text-yellow-400" id="sum-tebu-real">-</span></div>
-                            <div class="flex justify-between items-end border-t border-gray-700 pt-2 mt-2"><span class="text-xs text-gray-400 font-semibold">PERSEN:</span><span class="text-xl font-bold" id="sum-tebu-pct">-</span></div>
-                        </div>
-                    </div>
-                            
-         <!-- Card 5: Produksi GKP -->
-                    <div class="summary-card p-6 rounded-xl" id="card-produksi">
-                        <div class="flex justify-between items-start mb-4">
-                            <div><h4 class="text-gray-400 text-sm font-bold">Produksi GKP</h4><p class="text-xs text-gray-500">Sampai dengan Hari ini</p></div>
-                            <i class="fas fa-hard-hat text-3xl text-yellow-400 opacity-50"></i>
-                        </div>
-                        <div class="space-y-2">
-                            <div class="flex justify-between items-end"><span class="text-xs text-gray-500">Target:</span><span class="text-lg font-bold text-white" id="sum-prod-target">-</span></div>
-                            <div class="flex justify-between items-end"><span class="text-xs text-gray-500">Realisasi:</span><span class="text-lg font-bold text-yellow-400" id="sum-prod-real">-</span></div>
-                            <div class="flex justify-between items-end border-t border-gray-700 pt-2 mt-2"><span class="text-xs text-gray-400 font-semibold">PERSEN:</span><span class="text-xl font-bold" id="sum-prod-pct">-</span></div>
-                        </div>
-                    </div>
-                       
-         <!-- Card 6: Rendemen -->
-                    <div class="summary-card p-6 rounded-xl" id="card-rendemen">
-                        <div class="flex justify-between items-start mb-4">
-                            <div><h4 class="text-gray-400 text-sm font-bold">Rendemen</h4><p class="text-xs text-gray-500">Sampai dengan Hari ini</p></div>
-                            <i class="fas fa-hard-hat text-3xl text-yellow-400 opacity-50"></i>
-                        </div>
-                        <div class="space-y-2">
-                            <div class="flex justify-between items-end"><span class="text-xs text-gray-500">Target:</span><span class="text-lg font-bold text-white" id="sum-rend-target">-</span></div>
-                            <div class="flex justify-between items-end"><span class="text-xs text-gray-500">Realisasi:</span><span class="text-lg font-bold text-yellow-400" id="sum-rend-real">-</span></div>
-                            <div class="flex justify-between items-end border-t border-gray-700 pt-2 mt-2"><span class="text-xs text-gray-400 font-semibold">PERSEN:</span><span class="text-xl font-bold" id="sum-rend-pct">-</span></div>
-                        </div>
-                    </div>
                 </div>
-        
-        <!-- AI Expert Analysis -->
+
                 <div class="ai-expert-box p-6 rounded-xl mb-8">
                     <div class="flex items-center justify-between mb-4">
-                        <div class="flex items-center gap-2">
-                            <i class="fas fa-user-tie text-purple-400 text-lg"></i>
-                            <h3 class="font-bold text-white text-lg">Analisis AI Ahli Gula (Expert System)</h3>
-                        </div>
+                        <div class="flex items-center gap-2"><i class="fas fa-user-tie text-purple-400 text-lg"></i><h3 class="font-bold text-white text-lg">Analisis AI Ahli Gula (Expert System)</h3></div>
                         <button onclick="runExpertAI()" class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg text-xs font-semibold transition"><i class="fas fa-cogs mr-1"></i> Run Analysis</button>
                     </div>
-                    <div id="aiHomeContent" class="text-sm text-gray-200 space-y-4">
-                        <p class="text-gray-400 italic">Sistem siap menganalisis korelasi antar data...</p>
-                    </div>
+                    <div id="aiHomeContent" class="text-sm text-gray-200 space-y-4"><p class="text-gray-400 italic">Sistem siap menganalisis korelasi antar data...</p></div>
                 </div>
             </section>
 
             <!-- OPERASIONAL -->
             <section id="operasional" class="page-section">
                 <h3 class="font-bold text-lg mb-4 text-blue-400"><i class="fas fa-industry mr-2"></i>Data Operasional Pabrik</h3>
-                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
-                    <div class="ops-card p-4 rounded-xl" id="card-tebu"><h4 class="text-gray-400 text-xs">Tebu Digiling</h4><h2 class="text-2xl font-bold text-blue-400 my-2" id="val-tebu">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-tebu" class="text-white">-</span></span><span id="pct-tebu" class="font-bold">-</span></div></div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+                    <div class="ops-card p-4 rounded-xl" id="card-tebu"><h4 class="text-gray-400 text-xs">Tebu Giling</h4><h2 class="text-2xl font-bold text-blue-400 my-2" id="val-tebu">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-tebu" class="text-white">-</span></span><span id="pct-tebu" class="font-bold">-</span></div></div>
                     <div class="ops-card p-4 rounded-xl" id="card-gula"><h4 class="text-gray-400 text-xs">Hasil Gula</h4><h2 class="text-2xl font-bold text-green-400 my-2" id="val-gula">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-gula" class="text-white">-</span></span><span id="pct-gula" class="font-bold">-</span></div></div>
                     <div class="ops-card p-4 rounded-xl" id="card-rendemen"><h4 class="text-gray-400 text-xs">Rendemen</h4><h2 class="text-2xl font-bold text-yellow-400 my-2" id="val-rendemen">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-rendemen" class="text-white">-</span></span><span id="pct-rendemen" class="font-bold">-</span></div></div>
                     <div class="ops-card p-4 rounded-xl" id="card-tetes"><h4 class="text-gray-400 text-xs">Produksi Tetes</h4><h2 class="text-2xl font-bold text-purple-400 my-2" id="val-tetes">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-tetes" class="text-white">-</span></span><span id="pct-tetes" class="font-bold">-</span></div></div>
                     <div class="ops-card p-4 rounded-xl" id="card-kis"><h4 class="text-gray-400 text-xs">KIS/KES</h4><h2 class="text-2xl font-bold text-cyan-400 my-2" id="val-kis">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-kis" class="text-white">-</span></span><span id="pct-kis" class="font-bold">-</span></div></div>
                     <div class="ops-card p-4 rounded-xl" id="card-jamti"><h4 class="text-gray-400 text-xs">Jamti A/B <span class="text-red-300 text-[10px]">(Max)</span></h4><h2 class="text-2xl font-bold text-red-400 my-2" id="val-jamti">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Batas: <span id="tgt-jamti" class="text-white">-</span></span><span id="pct-jamti" class="font-bold">-</span></div></div>
-                    <div class="ops-card p-4 rounded-xl" id="card-or"><h4 class="text-gray-400 text-xs">OR (Overal Recovery)</h4><h2 class="text-2xl font-bold text-orange-400 my-2" id="val-or">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-or" class="text-white">-</span></span><span id="pct-or" class="font-bold">-</span></div></div>
+                    <div class="ops-card p-4 rounded-xl" id="card-or"><h4 class="text-gray-400 text-xs">OR (Olah Rate)</h4><h2 class="text-2xl font-bold text-orange-400 my-2" id="val-or">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-or" class="text-white">-</span></span><span id="pct-or" class="font-bold">-</span></div></div>
                     <div class="ops-card p-4 rounded-xl" id="card-losses"><h4 class="text-gray-400 text-xs">Total Losses</h4><h2 class="text-2xl font-bold text-gray-400 my-2" id="val-losses">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-losses" class="text-white">-</span></span><span id="pct-losses" class="font-bold">-</span></div></div>
                 </div>
-                <div class="ai-expert-box p-6 rounded-xl">
-                    <h3 class="font-bold text-white mb-2"><i class="fas fa-robot mr-2"></i>Analisis Kinerja Giling</h3>
-                    <div id="aiOperasionalContent" class="text-sm text-gray-300"></div>
-                </div>
+                <div class="ai-expert-box p-6 rounded-xl"><h3 class="font-bold text-white mb-2"><i class="fas fa-robot mr-2"></i>Analisis Kinerja Giling</h3><div id="aiOperasionalContent" class="text-sm text-gray-300"></div></div>
             </section>
 
             <!-- PERSIAPAN PABRIK -->
@@ -215,26 +157,13 @@
                     <div class="milestone-card p-4 rounded-lg" id="card-steam"><h4 class="text-sm font-bold text-gray-300">Steam Test</h4><p class="text-xs text-gray-500 mt-1">Target: <span id="tgl-steam-target" class="text-white">-</span></p><p class="text-xs text-gray-500">Realisasi: <span id="tgl-steam-real" class="text-green-400 font-bold">-</span></p><p class="text-xs mt-2 font-semibold" id="status-steam">-</p></div>
                     <div class="milestone-card p-4 rounded-lg" id="card-giling"><h4 class="text-sm font-bold text-gray-300">Start Giling</h4><p class="text-xs text-gray-500 mt-1">Target: <span id="tgl-giling-target" class="text-white">-</span></p><p class="text-xs text-gray-500">Realisasi: <span id="tgl-giling-real" class="text-green-400 font-bold">-</span></p><p class="text-xs mt-2 font-semibold" id="status-giling">-</p></div>
                 </div>
-
-                <!-- Grafik Persiapan (Maintenance & Procurement) - DIPERBAIKI -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6 mb-6">
-                    <!-- Card Maintenance -->
-                    <div class="glass-dark p-6 rounded-xl border-t-4 border-green-500">
-                        <h3 class="font-bold text-lg mb-4 text-green-400"><i class="fas fa-wrench mr-2"></i>Progress Maintenance</h3>
-                        <div style="height: 300px;"><canvas id="chartMaintenance"></canvas></div>
-                        <div id="listMaintenance" class="mt-4 space-y-2 text-sm max-h-40 overflow-y-auto"></div>
-                    </div>
-                    
-                    <!-- Card Procurement -->
-                    <div class="glass-dark p-6 rounded-xl border-t-4 border-yellow-500">
-                        <h3 class="font-bold text-lg mb-4 text-yellow-400"><i class="fas fa-truck mr-2"></i>Progress Procurement</h3>
-                        <div style="height: 300px;"><canvas id="chartProcurement"></canvas></div>
-                        <div id="listProcurement" class="mt-4 space-y-2 text-sm max-h-40 overflow-y-auto"></div>
-                    </div>
+                    <div class="glass-dark p-6 rounded-xl border-t-4 border-green-500"><h3 class="font-bold text-lg mb-4 text-green-400"><i class="fas fa-wrench mr-2"></i>Progress Maintenance</h3><div style="height: 300px;"><canvas id="chartMaintenance"></canvas></div><div id="listMaintenance" class="mt-4 space-y-2 text-sm max-h-40 overflow-y-auto"></div></div>
+                    <div class="glass-dark p-6 rounded-xl border-t-4 border-yellow-500"><h3 class="font-bold text-lg mb-4 text-yellow-400"><i class="fas fa-truck mr-2"></i>Progress Procurement</h3><div style="height: 300px;"><canvas id="chartProcurement"></canvas></div><div id="listProcurement" class="mt-4 space-y-2 text-sm max-h-40 overflow-y-auto"></div></div>
                 </div>
             </section>
-            
-          <!-- PRODUCT INVENTORY (HALAMAN BARU) -->
+
+            <!-- PRODUCT INVENTORY (HALAMAN BARU) -->
             <section id="inventory" class="page-section">
                 <h3 class="font-bold text-lg mb-6 text-white"><i class="fas fa-boxes-stacked mr-2"></i>Product Inventory Status</h3>
                 
@@ -256,19 +185,19 @@
                             <div class="grid grid-cols-2 gap-6 mt-4">
                                 <div>
                                     <p class="text-xs opacity-75 uppercase font-semibold">Persediaan Gudang</p>
-                                    <p class="text-2xl font-bold" id="inv-gula-stock">- <span class="text-sm font-normal">Ton</span></p>
+                                    <p class="text-2xl font-bold" id="inv-gula-stock">- <span class="text-sm font-normal">Kw</span></p>
                                 </div>
                                 <div>
                                     <p class="text-xs opacity-75 uppercase font-semibold">DO Terbit</p>
-                                    <p class="text-2xl font-bold" id="inv-gula-do">- <span class="text-sm font-normal">Ton</span></p>
+                                    <p class="text-2xl font-bold" id="inv-gula-do">- <span class="text-sm font-normal">Kw</span></p>
                                 </div>
                                 <div>
                                     <p class="text-xs opacity-75 uppercase font-semibold">Sisa DO</p>
-                                    <p class="text-2xl font-bold text-blue-900" id="inv-gula-sisa">- <span class="text-sm font-normal">Ton</span></p>
+                                    <p class="text-2xl font-bold text-blue-900" id="inv-gula-sisa">- <span class="text-sm font-normal">Kw</span></p>
                                 </div>
                                 <div>
                                     <p class="text-xs opacity-75 uppercase font-semibold">Free Stock</p>
-                                    <p class="text-3xl font-bold text-green-800" id="inv-gula-free">- <span class="text-sm font-normal">Ton</span></p>
+                                    <p class="text-3xl font-bold text-green-800" id="inv-gula-free">- <span class="text-sm font-normal">Kw</span></p>
                                 </div>
                             </div>
                             <div class="mt-4 bg-orange-900/20 rounded-full h-2">
@@ -310,7 +239,9 @@
                                 </div>
                             </div>
                         </div>
-                         
+                    </div>
+                </div>
+
                 <!-- Card Kapur (Full Width) -->
                 <div class="inv-card-kapur p-6 rounded-2xl shadow-xl mb-8">
                     <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
@@ -340,7 +271,7 @@
                     </div>
                 </div>
             </section>
-            
+
             <!-- KEUANGAN -->
             <section id="keuangan" class="page-section">
                 <div class="glass-dark p-6 rounded-xl mb-6 border-t-4 border-red-500">
@@ -361,8 +292,8 @@
                     <button onclick="loadSheetData()" class="bg-sugar-accent hover:bg-pink-600 px-6 py-2 rounded-lg font-semibold transition">Simpan & Ambil Data</button>
                     
                     <div class="mt-6 text-xs text-gray-500 bg-sugar-dark p-4 rounded border border-gray-800">
-                        <p class="font-bold text-gray-300 mb-2">Panduan Format sheet (Update):</p>
-                        <p>Header: Kategori, Nama Item, Target, Realisasi, Persediaan, DO Terbit, Sisa DO, Free Stock, Pemakaian, Sisa, Satuan</p>
+                        <p class="font-bold text-gray-300 mb-2">Panduan Format Sheet (Update):</p>
+                        <p>Header: Kategori, Nama Item, Target, Realisasi, Satuan</p>
                         <p class="mt-2">Kategori yang tersedia:</p>
                         <ul class="list-disc list-inside">
                             <li>Summary (Maintenance, Investasi, Eksploitasi)</li>
@@ -380,7 +311,6 @@
     </main>
 
     <script>
-        
         // ==========================================
         // KONFIGURASI & VARIABEL
         // ==========================================
@@ -389,18 +319,13 @@
         let rawData = [];
         let analysisCache = { maint: null, inv: null, eks: null, ops: [], milestones: [] }; 
         
-        // Register Chart Plugin Sekali Saja
         Chart.register(ChartDataLabels);
 
         // DUMMY DATA
         const DUMMY_DATA = [
             { Kategori: 'Summary', 'Nama Item': 'Maintenance Pabrik', Target: 100, Realisasi: 75.20, Satuan: '%' },
-            { Kategori: 'Summary', 'Nama Item': 'PR Investasi ', Target: 50, Realisasi: 30, Satuan: 'Task' },
-            { Kategori: 'Summary', 'Nama Item': 'PR Eksploitasi', Target: 30, Realisasi: 10, Satuan: 'Task' },
-            { Kategori: 'Summary', 'Nama Item': 'Tebu Digiling', Target: 30, Realisasi: 10, Satuan: 'Ton' },
-            { Kategori: 'Summary', 'Nama Item': 'Produksi GKP', Target: 30, Realisasi: 10, Satuan: 'Ton' },
-            { Kategori: 'Summary', 'Nama Item': 'Rendemen', Target: 30, Realisasi: 10, Satuan: '%' },
-            
+            { Kategori: 'Summary', 'Nama Item': 'PR Investasi Pabrik', Target: 50, Realisasi: 30, Satuan: 'Paket' },
+            { Kategori: 'Summary', 'Nama Item': 'Eksploitasi', Target: 30, Realisasi: 10, Satuan: 'Paket' },
             { Kategori: 'Milestone', 'Nama Item': 'Start Overhaul', Target: '2024-04-01', Realisasi: '2024-04-05', Satuan: 'Tanggal' },
             { Kategori: 'Milestone', 'Nama Item': 'Slow Firing', Target: '2024-05-10', Realisasi: '', Satuan: 'Tanggal' },
             { Kategori: 'Milestone', 'Nama Item': 'Steam Test', Target: '2024-05-20', Realisasi: '', Satuan: 'Tanggal' },
@@ -410,10 +335,12 @@
             { Kategori: 'Operasional', 'Nama Item': 'Jamti A/B', Target: 5.0, Realisasi: 8.5, Satuan: '%' },
             { Kategori: 'Maintenance', 'Nama Item': 'Overhaul Mesin', Target: 100, Realisasi: 75.20, Satuan: '%' },
             { Kategori: 'Maintenance', 'Nama Item': 'Boiler Repair', Target: 100, Realisasi: 60.50, Satuan: '%' },
-            { Kategori: 'Procurement', 'Nama Item': 'Investasi', Target: 100, Realisasi: 40, Satuan: '%' },
-            { Kategori: 'Procurement', 'Nama Item': 'Eksploitasi', Target: 100, Realisasi: 90, Satuan: '%' },
-            { Kategori: 'Keuangan', 'Nama Item': 'Gaji', Target: 2000000000, Realisasi: 1800000000, Satuan: 'Rp' }
-            { Kategori: 'Inventory', 'Nama Item': 'Gula', Persediaan: 5000, 'DO Terbit': 2000, 'Sisa DO': 500, 'Free Stock': 3500, Satuan: 'Ton' },
+            { Kategori: 'Procurement', 'Nama Item': 'Sparepart Import', Target: 100, Realisasi: 40, Satuan: '%' },
+            { Kategori: 'Procurement', 'Nama Item': 'Chemical Supply', Target: 100, Realisasi: 90, Satuan: '%' },
+            { Kategori: 'Keuangan', 'Nama Item': 'Gaji', Target: 2000000000, Realisasi: 1800000000, Satuan: 'Rp' },
+            
+            // DATA INVENTORY BARU
+            { Kategori: 'Inventory', 'Nama Item': 'Gula', Persediaan: 5000, 'DO Terbit': 2000, 'Sisa DO': 500, 'Free Stock': 3500, Satuan: 'Kw' },
             { Kategori: 'Inventory', 'Nama Item': 'Tetes', Persediaan: 1200, 'DO Terbit': 800, 'Sisa DO': 100, 'Free Stock': 400, Satuan: 'Ton' },
             { Kategori: 'Inventory', 'Nama Item': 'Kapur', Persediaan: 300, Pemakaian: 50, Sisa: 250, Satuan: 'Ton' }
         ];
@@ -425,7 +352,7 @@
             document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-                        const navMap = { 'home': 0, 'operasional': 1, 'persiapan': 2, 'inventory': 3, 'keuangan': 4, 'pengaturan': 5 };
+            const navMap = { 'home': 0, 'operasional': 1, 'persiapan': 2, 'inventory': 3, 'keuangan': 4, 'pengaturan': 5 };
             if (navMap[pageId] !== undefined) document.querySelectorAll('.nav-item')[navMap[pageId]].classList.add('active');
         }
         function checkPassword() {
@@ -474,14 +401,11 @@
             const proc = rawData.filter(d => clean(getKategori(d)) === 'procurement');
             const keu = rawData.filter(d => clean(getKategori(d)) === 'keuangan');
             const inventory = rawData.filter(d => clean(getKategori(d)) === 'inventory');
-            
-            //Cache for AI
+
+            // Cache for AI
             analysisCache.maint = summary.find(d => clean(getNama(d)).includes('maintenance'));
             analysisCache.inv = summary.find(d => clean(getNama(d)).includes('investasi'));
             analysisCache.eks = summary.find(d => clean(getNama(d)).includes('eksploitasi'));
-            analysisCache.eks = summary.find(d => clean(getNama(d)).includes('tebu'));
-            analysisCache.eks = summary.find(d => clean(getNama(d)).includes('produksi'));
-            analysisCache.eks = summary.find(d => clean(getNama(d)).includes('rendemen'));
             analysisCache.ops = ops;
             analysisCache.milestones = milestones;
 
@@ -490,7 +414,6 @@
             renderOperasionalCards(ops);
             renderInventory(inventory); // Render Inventory
             
-            // Render Charts
             renderChart('chartMaintenance', maint, ['#10B981', '#059669']);
             renderChart('chartProcurement', proc, ['#F59E0B', '#D97706']);
             renderChart('chartKeuangan', keu, ['#EF4444', '#DC2626']);
@@ -498,7 +421,7 @@
             renderMaintenanceDetail(maint);
             renderList('listProcurement', proc, 'yellow');
             
-            runExpertAI(); // Run AI on load
+            runExpertAI(); 
         }
 
         // ==========================================
@@ -534,86 +457,43 @@
             }
         }
 
-
         // ==========================================
-        // RENDER HOME SUMMARY
+        // RENDER FUNCTIONS (LAINNYA)
         // ==========================================
         function renderHomeSummary(data) {
-            // 1. Maintenance
             const maint = data.find(d => clean(getNama(d)).includes('maintenance'));
             if(maint) {
-                const t = parseNum(getTarget(maint));
-                const r = parseNum(getRealisasi(maint));
+                const t = parseNum(getTarget(maint)); const r = parseNum(getRealisasi(maint));
                 const deviasi = r - t;
                 document.getElementById('sum-maint-target').innerText = t + "%";
                 document.getElementById('sum-maint-real').innerText = r.toFixed(2) + "%";
                 const elDev = document.getElementById('sum-maint-deviasi');
                 elDev.innerText = (deviasi >= 0 ? "+" : "") + deviasi.toFixed(2) + "%";
                 elDev.className = `text-xl font-bold ${deviasi < 0 ? 'text-red-400' : 'text-green-400'}`;
-                if(deviasi < 0) document.getElementById('card-maintenance').classList.add('warning');
-                else document.getElementById('card-maintenance').classList.remove('warning');
+                if(deviasi < 0) document.getElementById('card-maintenance').classList.add('warning'); else document.getElementById('card-maintenance').classList.remove('warning');
             }
-            // 2. PR Investasi
             const inv = data.find(d => clean(getNama(d)).includes('investasi'));
             if(inv) {
                 const t = parseNum(getTarget(inv)); const r = parseNum(getRealisasi(inv));
-                const sat = getSatuan(inv) || "Task"; const pct = t > 0 ? (r/t)*100 : 0;
+                const sat = getSatuan(inv) || "Paket"; const pct = t > 0 ? (r/t)*100 : 0;
                 document.getElementById('sum-inv-target').innerText = t.toLocaleString('id-ID') + " " + sat;
                 document.getElementById('sum-inv-real').innerText = r.toLocaleString('id-ID') + " " + sat;
                 const elPct = document.getElementById('sum-inv-pct');
                 elPct.innerText = pct.toFixed(2) + "%";
                 elPct.className = `text-xl font-bold ${r < t ? 'text-red-400' : 'text-green-400'}`;
             }
-            // 3. PR Eksploitasi
             const eks = data.find(d => clean(getNama(d)).includes('eksploitasi'));
             if(eks) {
                 const t = parseNum(getTarget(eks)); const r = parseNum(getRealisasi(eks));
-                const sat = getSatuan(eks) || "Task"; const pct = t > 0 ? (r/t)*100 : 0;
+                const sat = getSatuan(eks) || "Paket"; const pct = t > 0 ? (r/t)*100 : 0;
                 document.getElementById('sum-eks-target').innerText = t.toLocaleString('id-ID') + " " + sat;
                 document.getElementById('sum-eks-real').innerText = r.toLocaleString('id-ID') + " " + sat;
                 const elPct = document.getElementById('sum-eks-pct');
                 elPct.innerText = pct.toFixed(2) + "%";
                 elPct.className = `text-xl font-bold ${r < t ? 'text-red-400' : 'text-green-400'}`;
             }
-            // 4. Tebu Digiling
-            const tebu = data.find(d => clean(getNama(d)).includes('tebu'));
-            if(tebu) {
-                const t = parseNum(getTarget(tebu)); const r = parseNum(getRealisasi(tebu));
-                const sat = getSatuan(tebu) || "Ton"; const pct = t > 0 ? (r/t)*100 : 0;
-                document.getElementById('sum-tebu-target').innerText = t.toLocaleString('id-ID') + " " + sat;
-                document.getElementById('sum-tebu-real').innerText = r.toLocaleString('id-ID') + " " + sat;
-                const elPct = document.getElementById('sum-tebu-pct');
-                elPct.innerText = pct.toFixed(2) + "%";
-                elPct.className = `text-xl font-bold ${r < t ? 'text-red-400' : 'text-green-400'}`;
-            }
-            // 5. Produksi GKP
-            const prod = data.find(d => clean(getNama(d)).includes('produksi'));
-            if(prod) {
-                const t = parseNum(getTarget(prod)); const r = parseNum(getRealisasi(prod));
-                const sat = getSatuan(prod) || "TOn"; const pct = t > 0 ? (r/t)*100 : 0;
-                document.getElementById('sum-prod-target').innerText = t.toLocaleString('id-ID') + " " + sat;
-                document.getElementById('sum-prod-real').innerText = r.toLocaleString('id-ID') + " " + sat;
-                const elPct = document.getElementById('sum-prod-pct');
-                elPct.innerText = pct.toFixed(2) + "%";
-                elPct.className = `text-xl font-bold ${r < t ? 'text-red-400' : 'text-green-400'}`;
-            }
-// 6. Rendemen
-            const rend = data.find(d => clean(getNama(d)).includes('rendemen'));
-            if(rend) {
-                const t = parseNum(getTarget(rend)); const r = parseNum(getRealisasi(rend));
-                const sat = getSatuan(eks) || "persen"; const pct = t > 0 ? (r/t)*100 : 0;
-                document.getElementById('sum-rend-target').innerText = t.toLocaleString('id-ID') + " " + sat;
-                document.getElementById('sum-rend-real').innerText = r.toLocaleString('id-ID') + " " + sat;
-                const elPct = document.getElementById('sum-rend-pct');
-                elPct.innerText = pct.toFixed(2) + "%";
-                elPct.className = `text-xl font-bold ${r < t ? 'text-red-400' : 'text-green-400'}`;
-            }
-
         }
 
-        // ==========================================
-        // RENDER MILESTONES
-        // ==========================================
         function renderMilestones(data) {
             const today = new Date(); today.setHours(0,0,0,0);
             const items = [ { key: 'overhaul', name: 'Start Overhaul' }, { key: 'slow', name: 'Slow Firing' }, { key: 'steam', name: 'Steam Test' }, { key: 'giling', name: 'Start Giling' } ];
@@ -638,9 +518,6 @@
             });
         }
 
-        // ==========================================
-        // RENDER OPERASIONAL
-        // ==========================================
         function renderOperasionalCards(data) {
             const items = [
                 { key: 'tebu', name: 'Tebu Giling', color: 'blue' }, { key: 'gula', name: 'Hasil Gula', color: 'green' },
@@ -672,15 +549,9 @@
             });
         }
 
-        // ==========================================
-        // RENDER MAINTENANCE DETAIL
-        // ==========================================
         function renderMaintenanceDetail(data) {
             const c = document.getElementById('listMaintenance');
-            if(data.length === 0) {
-                c.innerHTML = "<p class='text-gray-500 text-center'>Tidak ada data maintenance</p>";
-                return;
-            }
+            if(data.length === 0) { c.innerHTML = "<p class='text-gray-500 text-center'>Tidak ada data</p>"; return; }
             c.innerHTML = data.map(item => {
                 const t = parseNum(getTarget(item)); const r = parseNum(getRealisasi(item));
                 const selisih = r - t; const nama = getNama(item);
@@ -692,10 +563,7 @@
 
         function renderList(containerId, data, color) {
             const c = document.getElementById(containerId);
-            if(data.length === 0) {
-                c.innerHTML = "<p class='text-gray-500 text-center'>Tidak ada data</p>";
-                return;
-            }
+            if(data.length === 0) { c.innerHTML = "<p class='text-gray-500 text-center'>Tidak ada data</p>"; return; }
             c.innerHTML = data.map(item => {
                 const t = parseNum(getTarget(item)) || 100; const r = parseNum(getRealisasi(item));
                 const pct = Math.round((r/t)*100); const nama = getNama(item);
@@ -705,24 +573,14 @@
             }).join('');
         }
 
-        // ==========================================
-        // GRAFIK (DIPERBAIKI)
-        // ==========================================
         function renderChart(canvasId, data, colors) {
             const ctx = document.getElementById(canvasId);
-            if (!ctx) return; // Safety check
-
+            if (!ctx) return;
             const labels = data.map(d => getNama(d) || 'Unknown');
             const targets = data.map(d => parseNum(getTarget(d)));
             const realisasi = data.map(d => parseNum(getRealisasi(d)));
-            
-            // Destroy existing chart instance
             let chartInstance = Chart.getChart(canvasId);
-            if (chartInstance) {
-                chartInstance.destroy();
-            }
-
-            // Create new chart
+            if (chartInstance) chartInstance.destroy();
             new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -741,13 +599,12 @@
         // ==========================================
         function runExpertAI() {
             const container = document.getElementById('aiHomeContent');
-            container.innerHTML = `<p class="text-purple-400 animate-pulse"><i class="fas fa-spinner mr-2"></i>Analisisis Data Multi-Dimensi...</p>`;
+            container.innerHTML = `<p class="text-purple-400 animate-pulse"><i class="fas fa-spinner mr-2"></i>Analisis Multi-Dimensi...</p>`;
             
             setTimeout(() => {
                 let expertAnalysis = [];
                 let criticalIssues = [];
 
-                // 1. ANALISIS KETERLAMBATAN MAINTENANCE
                 const maintData = analysisCache.maint;
                 const maintProgress = maintData ? parseNum(getRealisasi(maintData)) : 0;
                 
@@ -756,88 +613,27 @@
                     const tglGiling = startGiling ? parseDate(getTarget(startGiling)) : null;
                     const today = new Date();
                     const daysUntilGiling = tglGiling ? Math.ceil((tglGiling - today) / (1000 * 60 * 60 * 24)) : 0;
-
                     if (daysUntilGiling < 14 && daysUntilGiling > 0) {
-                        criticalIssues.push({
-                            level: 'danger',
-                            title: `Peringatan Kritis: Persiapan Giling`,
-                            msg: `Start Giling tinggal <strong>${daysUntilGiling} hari</strong> lagi, namun Maintenance baru <strong>${maintProgress}%</strong>. 
-                                  <br><strong>Sebagai Ahli:</strong> Risiko breakdown awal musim sangat tinggi. Prioritaskan pekerjaan kritis (Boiler, Turbin, Gilingan) segera. Pertimbangkan lembur 3 shift.`
-                        });
-                    } else if (maintProgress < 90) {
-                        criticalIssues.push({
-                            level: 'warning',
-                            title: `Progress Maintenance Rendah`,
-                            msg: `Pekerjaan maintenance masih di bawah 90%. Pastikan procurement sparepart tidak menjadi penghambat.`
-                        });
+                        criticalIssues.push({ level: 'danger', title: `Peringatan Kritis: Persiapan Giling`, msg: `Start Giling tinggal <strong>${daysUntilGiling} hari</strong> lagi, namun Maintenance baru <strong>${maintProgress}%</strong>. <br><strong>Sebagai Ahli:</strong> Risiko breakdown awal musim sangat tinggi. Prioritaskan pekerjaan kritis (Boiler, Turbin, Gilingan) segera.` });
                     }
                 }
 
-                // 2. ANALISIS INVESTASI & EKSPLOITASI
-                const invData = analysisCache.inv; const eksData = analysisCache.eks;
+                const invData = analysisCache.inv; 
                 if (invData && parseNum(getRealisasi(invData)) < parseNum(getTarget(invData))) {
-                     expertAnalysis.push("Keterlambatan proyek <strong>Investasi</strong> akan membatasi peningkatan kapasitas produksi tahun ini. Evaluasi hambatan kontraktor atau pengadaan material.");
-                }
-                if (eksData && parseNum(getRealisasi(eksData)) < parseNum(getTarget(eksData))) {
-                     expertAnalysis.push("Target <strong>Eksploitasi</strong> tidak tercapai, potensi kehilangan hasil panen tebu atau penurunan kuota. Koordinasi dengan unit kebun vital.");
+                     expertAnalysis.push("Keterlambatan proyek <strong>Investasi</strong> membatasi peningkatan kapasitas produksi.");
                 }
 
-                // 3. ANALISIS OPERASIONAL (KORELASI)
                 const jamti = analysisCache.ops.find(o => clean(getNama(o)).includes('jamti'));
-                const rendemen = analysisCache.ops.find(o => clean(getNama(o)).includes('rendemen'));
-                const losses = analysisCache.ops.find(o => clean(getNama(o)).includes('losses'));
-
-                // Korelasi Jamti & Maintenance
                 if (jamti && parseNum(getRealisasi(jamti)) > parseNum(getTarget(jamti))) {
-                    expertAnalysis.push(`<strong>Jamti (Jam Tidak Inkam)</strong> melebihi batas maksimal. 
-                                         <br><i class='fas fa-lightbulb text-yellow-400 mr-1'></i>Korelasi: Ini kemungkinan disebabkan oleh persiapan maintenance yang kurang matang (lihat data maintenance).
-                                         <br><strong>Saran Ahli:</strong> Perketat SOP start-up dan perbaikan mesin pengering/gilingan. Jangan abaikan getaran mesin.`);
+                    expertAnalysis.push(`<strong>Jamti (Jam Tidak Inkam)</strong> melebihi batas. <br><i class='fas fa-lightbulb text-yellow-400 mr-1'></i>Korelasi: Kemungkinan disebabkan persiapan maintenance yang kurang matang.`);
                 }
 
-                // Korelasi Rendemen & Losses
-                if (rendemen && parseNum(getRealisasi(rendemen)) < parseNum(getTarget(rendemen))) {
-                    let reason = "";
-                    if (losses && parseNum(getRealisasi(losses)) > parseNum(getTarget(losses))) {
-                        reason = "Total Losses tinggi terdeteksi.";
-                    } else {
-                        reason = "Kualitas tebu atau proses ekstraksi.";
-                    }
-                    expertAnalysis.push(`<strong>Rendemen</strong> di bawah target. Faktor: ${reason}.
-                                         <br><strong>Saran Ahli:</strong> Evaluasi pemanasan juice (ijuksasi), tekanan evaporator, dan pH proses. Jika tebu rusak, koordinasi dengan pabrikasi.`);
-                }
-
-                // RENDER OUTPUT
                 let html = "";
-                
-                if (criticalIssues.length > 0) {
-                    criticalIssues.forEach(issue => {
-                        html += `<div class="bg-red-900/40 border-l-4 border-red-500 p-4 rounded mb-4">
-                                    <h4 class="font-bold text-red-400"><i class="fas fa-exclamation-circle mr-2"></i>${issue.title}</h4>
-                                    <p class="text-gray-300 text-xs mt-2 leading-relaxed">${issue.msg}</p>
-                                 </div>`;
-                    });
-                }
-
-                if (expertAnalysis.length > 0) {
-                    html += `<div class="bg-blue-900/30 border-l-4 border-blue-400 p-4 rounded mb-4">
-                                <h4 class="font-bold text-blue-300 mb-2"><i class="fas fa-chart-line mr-2"></i>Analisis Operasional & Strategi</h4>
-                                <ul class="text-xs space-y-3">`;
-                    expertAnalysis.forEach(anal => {
-                        html += `<li class="border-b border-gray-700 pb-2 mb-2">${anal}</li>`;
-                    });
-                    html += `</ul></div>`;
-                }
-
-                if (html === "") {
-                    html = `<div class="bg-green-900/30 border-l-4 border-green-400 p-4 rounded">
-                                <h4 class="font-bold text-green-400"><i class="fas fa-check-circle mr-2"></i>Status: OPTIMAL</h4>
-                                <p class="text-xs mt-2">Semua parameter operasional dan proyek dalam jalur yang baik. Pertahankan kinerja ini.</p>
-                            </div>`;
-                }
-
+                if (criticalIssues.length > 0) { criticalIssues.forEach(issue => { html += `<div class="bg-red-900/40 border-l-4 border-red-500 p-4 rounded mb-4"><h4 class="font-bold text-red-400"><i class="fas fa-exclamation-circle mr-2"></i>${issue.title}</h4><p class="text-gray-300 text-xs mt-2 leading-relaxed">${issue.msg}</p></div>`; }); }
+                if (expertAnalysis.length > 0) { html += `<div class="bg-blue-900/30 border-l-4 border-blue-400 p-4 rounded mb-4"><h4 class="font-bold text-blue-300 mb-2"><i class="fas fa-chart-line mr-2"></i>Analisis Operasional</h4><ul class="text-xs space-y-3">`; expertAnalysis.forEach(anal => { html += `<li class="border-b border-gray-700 pb-2 mb-2">${anal}</li>`; }); html += `</ul></div>`; }
+                if (html === "") { html = `<div class="bg-green-900/30 border-l-4 border-green-400 p-4 rounded"><h4 class="font-bold text-green-400"><i class="fas fa-check-circle mr-2"></i>Status: OPTIMAL</h4><p class="text-xs mt-2">Semua parameter dalam jalur yang baik.</p></div>`; }
                 container.innerHTML = html;
                 document.getElementById('aiOperasionalContent').innerHTML = expertAnalysis.map(e => `<p class='mb-2'>${e}</p>`).join('') || "<p class='text-green-400'>Operasional Aman.</p>";
-
             }, 1000);
         }
 
