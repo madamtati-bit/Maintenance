@@ -485,20 +485,6 @@
                 document.getElementById('inv-kapur-pakai').innerText = parseNum(kapur.Pemakaian).toLocaleString('id-ID');
                 document.getElementById('inv-kapur-sisa').innerText = parseNum(kapur.Sisa).toLocaleString('id-ID');
             }
-
-             // Render Belerang
-            if(belerang) {
-                document.getElementById('inv-belerang-stock').innerText = parseNum(belerang.Persediaan).toLocaleString('id-ID');
-                document.getElementById('inv-belerang-pakai').innerText = parseNum(belerang.Pemakaian).toLocaleString('id-ID');
-                document.getElementById('inv-belerang-sisa').innerText = parseNum(belerang.Sisa).toLocaleString('id-ID');
-            }
-
-            // Render Solar
-            if(solar) {
-                document.getElementById('inv-solar-stock').innerText = parseNum(solar.Persediaan).toLocaleString('id-ID');
-                document.getElementById('inv-solar-pakai').innerText = parseNum(solar.Pemakaian).toLocaleString('id-ID');
-                document.getElementById('inv-solar-sisa').innerText = parseNum(solar.Sisa).toLocaleString('id-ID');
-            }
         }
        
         // ==========================================
