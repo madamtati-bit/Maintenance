@@ -592,6 +592,36 @@
                 elPct.innerText = pct.toFixed(2) + "%";
                 elPct.className = `text-xl font-bold ${r < t ? 'text-red-400' : 'text-green-400'}`;
             }
+            const tebu = data.find(d => clean(getNama(d)).includes('tebu'));
+            if(tebu) {
+                const t = parseNum(getTarget(tebu)); const r = parseNum(getRealisasi(tebu));
+                const sat = getSatuan(tebu) || "Ton"; const pct = t > 0 ? (r/t)*100 : 0;
+                document.getElementById('sum-tebu-target').innerText = t.toLocaleString('id-ID') + " " + sat;
+                document.getElementById('sum-tebu-real').innerText = r.toLocaleString('id-ID') + " " + sat;
+                const elPct = document.getElementById('sum-tebu-pct');
+                elPct.innerText = pct.toFixed(2) + "%";
+                elPct.className = `text-xl font-bold ${r < t ? 'text-red-400' : 'text-green-400'}`;
+            }
+            const prod = data.find(d => clean(getNama(d)).includes('produksi'));
+            if(prod) {
+                const t = parseNum(getTarget(prod)); const r = parseNum(getRealisasi(prod));
+                const sat = getSatuan(prod) || "Ton"; const pct = t > 0 ? (r/t)*100 : 0;
+                document.getElementById('sum-prod-target').innerText = t.toLocaleString('id-ID') + " " + sat;
+                document.getElementById('sum-prod-real').innerText = r.toLocaleString('id-ID') + " " + sat;
+                const elPct = document.getElementById('sum-prod-pct');
+                elPct.innerText = pct.toFixed(2) + "%";
+                elPct.className = `text-xl font-bold ${r < t ? 'text-red-400' : 'text-green-400'}`;
+            }
+            const rend = data.find(d => clean(getNama(d)).includes('rendemen'));
+            if(rend) {
+                const t = parseNum(getTarget(rend)); const r = parseNum(getRealisasi(rend));
+                const sat = getSatuan(rend) || "%"; const pct = t > 0 ? (r/t)*100 : 0;
+                document.getElementById('sum-rend-target').innerText = t.toLocaleString('id-ID') + " " + sat;
+                document.getElementById('sum-rend-real').innerText = r.toLocaleString('id-ID') + " " + sat;
+                const elPct = document.getElementById('sum-rend-pct');
+                elPct.innerText = pct.toFixed(2) + "%";
+                elPct.className = `text-xl font-bold ${r < t ? 'text-red-400' : 'text-green-400'}`;
+            }
         }
 
         function renderMilestones(data) {
