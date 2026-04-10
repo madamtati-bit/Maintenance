@@ -492,6 +492,8 @@
             const gula = data.find(d => clean(getNama(d)).includes('gula'));
             const tetes = data.find(d => clean(getNama(d)).includes('tetes'));
             const kapur = data.find(d => clean(getNama(d)).includes('kapur'));
+            const belerang = data.find(d => clean(getNama(d)).includes('belerang'));
+            const solar = data.find(d => clean(getNama(d)).includes('solar'));
 
             // Render Gula
             if(gula) {
@@ -515,8 +517,22 @@
                 document.getElementById('inv-kapur-pakai').innerText = parseNum(kapur.Pemakaian).toLocaleString('id-ID');
                 document.getElementById('inv-kapur-sisa').innerText = parseNum(kapur.Sisa).toLocaleString('id-ID');
             }
-        }
 
+          // Render Belerang
+            if(belerang) {
+                document.getElementById('inv-belerang-stock').innerText = parseNum(belerang.Persediaan).toLocaleString('id-ID');
+                document.getElementById('inv-belerang-pakai').innerText = parseNum(belerang.Pemakaian).toLocaleString('id-ID');
+                document.getElementById('inv-belerang-sisa').innerText = parseNum(belerang.Sisa).toLocaleString('id-ID');
+            } 
+
+            // Render Solar
+            if(kapur) {
+                document.getElementById('inv-solar-stock').innerText = parseNum(solar.Persediaan).toLocaleString('id-ID');
+                document.getElementById('inv-solar-pakai').innerText = parseNum(solar.Pemakaian).toLocaleString('id-ID');
+                document.getElementById('inv-solar-sisa').innerText = parseNum(solar.Sisa).toLocaleString('id-ID');
+            }
+        }
+        
         // ==========================================
         // RENDER FUNCTIONS (LAINNYA)
         // ==========================================
