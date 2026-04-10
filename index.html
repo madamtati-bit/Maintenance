@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SUGARDASH - Expert System</title>
+    <title>SUGARDASH - Pabrik Gula Sei Semayang</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
@@ -66,7 +66,7 @@
                 <div class="bg-sugar-accent p-2 rounded-lg"><i class="fas fa-brain text-white text-xl"></i></div>
                 <div>
                     <h1 class="text-xl font-bold text-white">SUGARDASH</h1>
-                    <p class="text-xs text-gray-400">Expert System</p>
+                    <p class="text-xs text-gray-400">Pabrik Gula Sei Semayang</p>
                 </div>
             </div>
         </div>
@@ -87,7 +87,7 @@
         <header class="flex justify-between items-center mb-8">
             <div>
                 <h2 class="text-2xl font-bold text-white" id="pageTitle">Dashboard Utama</h2>
-                <p class="text-gray-400" id="pageSubtitle">Analisis Sistem Pakar Gula.</p>
+                <p class="text-gray-400" id="pageSubtitle">PG. Sei Semayang.</p>
             </div>
             <div class="flex items-center gap-4">
                 <span id="syncStatus" class="text-xs text-gray-500 bg-sugar-card px-3 py-1 rounded-full"><i class="fas fa-wifi mr-1"></i> Initializing...</span>
@@ -100,7 +100,7 @@
             <section id="home" class="page-section active">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                     <div class="summary-card p-6 rounded-xl" id="card-maintenance">
-                        <div class="flex justify-between items-start mb-4"><div><h4 class="text-gray-400 text-sm font-bold">Maintenance Pabrik</h4><p class="text-xs text-gray-500">Progress Fisik</p></div><i class="fas fa-wrench text-3xl text-blue-400 opacity-50"></i></div>
+                        <div class="flex justify-between items-start mb-4"><div><h4 class="text-gray-400 text-sm font-bold">Maintenance Pabrik</h4><p class="text-xs text-gray-500">Progress Overhoul</p></div><i class="fas fa-wrench text-3xl text-blue-400 opacity-50"></i></div>
                         <div class="space-y-2">
                             <div class="flex justify-between items-end"><span class="text-xs text-gray-500">Target:</span><span class="text-lg font-bold text-white" id="sum-maint-target">-</span></div>
                             <div class="flex justify-between items-end"><span class="text-xs text-gray-500">Realisasi:</span><span class="text-lg font-bold text-blue-400" id="sum-maint-real">-</span></div>
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                     <div class="summary-card p-6 rounded-xl" id="card-investasi">
-                        <div class="flex justify-between items-start mb-4"><div><h4 class="text-gray-400 text-sm font-bold">PR Investasi</h4><p class="text-xs text-gray-500">Paket/Buah</p></div><i class="fas fa-chart-line text-3xl text-green-400 opacity-50"></i></div>
+                        <div class="flex justify-between items-start mb-4"><div><h4 class="text-gray-400 text-sm font-bold">PR Investasi</h4><p class="text-xs text-gray-500">SPPBJ Terbit</p></div><i class="fas fa-chart-line text-3xl text-green-400 opacity-50"></i></div>
                         <div class="space-y-2">
                             <div class="flex justify-between items-end"><span class="text-xs text-gray-500">Target:</span><span class="text-lg font-bold text-white" id="sum-inv-target">-</span></div>
                             <div class="flex justify-between items-end"><span class="text-xs text-gray-500">Realisasi:</span><span class="text-lg font-bold text-green-400" id="sum-inv-real">-</span></div>
@@ -116,7 +116,7 @@
                         </div>
                     </div>
                     <div class="summary-card p-6 rounded-xl" id="card-eksploitasi">
-                        <div class="flex justify-between items-start mb-4"><div><h4 class="text-gray-400 text-sm font-bold">Eksploitasi</h4><p class="text-xs text-gray-500">Paket/Buah</p></div><i class="fas fa-hard-hat text-3xl text-yellow-400 opacity-50"></i></div>
+                        <div class="flex justify-between items-start mb-4"><div><h4 class="text-gray-400 text-sm font-bold">Eksploitasi</h4><p class="text-xs text-gray-500">SPPBJ Terbit</p></div><i class="fas fa-hard-hat text-3xl text-yellow-400 opacity-50"></i></div>
                         <div class="space-y-2">
                             <div class="flex justify-between items-end"><span class="text-xs text-gray-500">Target:</span><span class="text-lg font-bold text-white" id="sum-eks-target">-</span></div>
                             <div class="flex justify-between items-end"><span class="text-xs text-gray-500">Realisasi:</span><span class="text-lg font-bold text-yellow-400" id="sum-eks-real">-</span></div>
@@ -163,12 +163,12 @@
                 <h3 class="font-bold text-lg mb-4 text-blue-400"><i class="fas fa-industry mr-2"></i>Data Operasional Pabrik</h3>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
                     <div class="ops-card p-4 rounded-xl" id="card-tebu"><h4 class="text-gray-400 text-xs">Tebu Giling</h4><h2 class="text-2xl font-bold text-blue-400 my-2" id="val-tebu">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-tebu" class="text-white">-</span></span><span id="pct-tebu" class="font-bold">-</span></div></div>
-                    <div class="ops-card p-4 rounded-xl" id="card-gula"><h4 class="text-gray-400 text-xs">Hasil Gula</h4><h2 class="text-2xl font-bold text-green-400 my-2" id="val-gula">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-gula" class="text-white">-</span></span><span id="pct-gula" class="font-bold">-</span></div></div>
+                    <div class="ops-card p-4 rounded-xl" id="card-gula"><h4 class="text-gray-400 text-xs">Produksi Gula</h4><h2 class="text-2xl font-bold text-green-400 my-2" id="val-gula">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-gula" class="text-white">-</span></span><span id="pct-gula" class="font-bold">-</span></div></div>
                     <div class="ops-card p-4 rounded-xl" id="card-rendemen"><h4 class="text-gray-400 text-xs">Rendemen</h4><h2 class="text-2xl font-bold text-yellow-400 my-2" id="val-rendemen">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-rendemen" class="text-white">-</span></span><span id="pct-rendemen" class="font-bold">-</span></div></div>
                     <div class="ops-card p-4 rounded-xl" id="card-tetes"><h4 class="text-gray-400 text-xs">Produksi Tetes</h4><h2 class="text-2xl font-bold text-purple-400 my-2" id="val-tetes">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-tetes" class="text-white">-</span></span><span id="pct-tetes" class="font-bold">-</span></div></div>
                     <div class="ops-card p-4 rounded-xl" id="card-kis"><h4 class="text-gray-400 text-xs">KIS/KES</h4><h2 class="text-2xl font-bold text-cyan-400 my-2" id="val-kis">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-kis" class="text-white">-</span></span><span id="pct-kis" class="font-bold">-</span></div></div>
                     <div class="ops-card p-4 rounded-xl" id="card-jamti"><h4 class="text-gray-400 text-xs">Jamti A/B <span class="text-red-300 text-[10px]">(Max)</span></h4><h2 class="text-2xl font-bold text-red-400 my-2" id="val-jamti">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Batas: <span id="tgt-jamti" class="text-white">-</span></span><span id="pct-jamti" class="font-bold">-</span></div></div>
-                    <div class="ops-card p-4 rounded-xl" id="card-or"><h4 class="text-gray-400 text-xs">OR (Olah Rate)</h4><h2 class="text-2xl font-bold text-orange-400 my-2" id="val-or">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-or" class="text-white">-</span></span><span id="pct-or" class="font-bold">-</span></div></div>
+                    <div class="ops-card p-4 rounded-xl" id="card-or"><h4 class="text-gray-400 text-xs">OR (Overal Recovery)</h4><h2 class="text-2xl font-bold text-orange-400 my-2" id="val-or">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-or" class="text-white">-</span></span><span id="pct-or" class="font-bold">-</span></div></div>
                     <div class="ops-card p-4 rounded-xl" id="card-losses"><h4 class="text-gray-400 text-xs">Total Losses</h4><h2 class="text-2xl font-bold text-gray-400 my-2" id="val-losses">-</h2><div class="flex justify-between text-xs text-gray-500"><span>Target: <span id="tgt-losses" class="text-white">-</span></span><span id="pct-losses" class="font-bold">-</span></div></div>
                 </div>
                 <div class="ai-expert-box p-6 rounded-xl"><h3 class="font-bold text-white mb-2"><i class="fas fa-robot mr-2"></i>Analisis Kinerja Giling</h3><div id="aiOperasionalContent" class="text-sm text-gray-300"></div></div>
