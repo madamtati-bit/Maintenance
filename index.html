@@ -298,23 +298,21 @@
                     </div>
                    </div>         
 
-                    <!-- Card Belerang (Full Width) -->
-                    <div class="inv-card-gula p-6 rounded-2xl shadow-xl relative overflow-hidden">
-                        <div class="absolute top-0 right-0 opacity-10 mt-[-20px] mr-[-20px]">
-                            <i class="fas fa-cubes text-9xl"></i>
-                        </div>
-                        <div class="relative z-10">
-                            <div class="flex items-center gap-3 mb-4 border-b border-orange-300/30 pb-2">
-                                <i class="fas fa-sugar-cane text-2xl"></i>
-                                <div>
-                                    <h4 class="font-bold text-xl">BELERANG</h4>
-                                    <p class="text-xs opacity-75">Flek</p>
-                                </div>
+                    <!-- Card belerang  (Full Width) -->
+                <div class="inv-card-kapur p-6 rounded-2xl shadow-xl mb-8">
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-gray-300 p-3 rounded-full text-gray-700">
+                                <i class="fas fa-mountain text-2xl"></i>
                             </div>
-                            
-                            <div class="grid grid-cols-2 gap-6 mt-4">
-                                <div>
-                                    <p class="text-xs text-gray-500 uppercase font-semibold">Persediaan</p>
+                            <div>
+                                <h4 class="font-bold text-xl text-gray-800">BELERANG</h4>
+                                <p class="text-xs text-gray-500">Material Pabrik</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-8 w-full md:w-auto text-center">
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase font-semibold">Persediaan</p>
                                 <p class="text-2xl font-bold text-gray-800" id="inv-belerang-stock">- <span class="text-sm font-normal">Ton</span></p>
                             </div>
                             <div>
@@ -324,6 +322,37 @@
                             <div>
                                 <p class="text-xs text-gray-500 uppercase font-semibold">Sisa</p>
                                 <p class="text-2xl font-bold text-red-700" id="inv-belerang-sisa">- <span class="text-sm font-normal">Ton</span></p>
+                            </div>
+                        </div>
+                    </div>
+                   </div>         
+
+                    <!-- Card Solaar (Full Width) -->
+                    <div class="inv-card-gula p-6 rounded-2xl shadow-xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 opacity-10 mt-[-20px] mr-[-20px]">
+                            <i class="fas fa-cubes text-9xl"></i>
+                        </div>
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-3 mb-4 border-b border-orange-300/30 pb-2">
+                                <i class="fas fa-sugar-cane text-2xl"></i>
+                                <div>
+                                    <h4 class="font-bold text-xl">SOLAR</h4>
+                                    <p class="text-xs opacity-75">Bahan bakar minya</p>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-6 mt-4">
+                                <div>
+                                    <p class="text-xs text-gray-500 uppercase font-semibold">Persediaan</p>
+                                <p class="text-2xl font-bold text-gray-800" id="inv-solar-stock">- <span class="text-sm font-normal">Ton</span></p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase font-semibold">Pemakaian</p>
+                                <p class="text-2xl font-bold text-blue-700" id="inv-solar-pakai">- <span class="text-sm font-normal">Ton</span></p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase font-semibold">Sisa</p>
+                                <p class="text-2xl font-bold text-red-700" id="inv-solar-sisa">- <span class="text-sm font-normal">Ton</span></p>
                           </div>
                         </div>
                     </div>
@@ -404,6 +433,8 @@
             { Kategori: 'Inventory', 'Nama Item': 'Gula', Persediaan: 5000, 'DO Terbit': 2000, 'Sisa DO': 500, 'Free Stock': 3500, Satuan: 'Ton' },
             { Kategori: 'Inventory', 'Nama Item': 'Tetes', Persediaan: 1200, 'DO Terbit': 800, 'Sisa DO': 100, 'Free Stock': 400, Satuan: 'Ton' },
             { Kategori: 'Inventory', 'Nama Item': 'Kapur', Persediaan: 300, Pemakaian: 50, Sisa: 250, Satuan: 'Ton' }
+            { Kategori: 'Inventory', 'Nama Item': 'belerang', Persediaan: 300, Pemakaian: 50, Sisa: 250, Satuan: 'Ton' }
+            { Kategori: 'Inventory', 'Nama Item': 'solar', Persediaan: 300, Pemakaian: 50, Sisa: 250, Satuan: 'liter' }
         ]
 
         // ==========================================
@@ -493,6 +524,8 @@
             const gula = data.find(d => clean(getNama(d)).includes('gula'));
             const tetes = data.find(d => clean(getNama(d)).includes('tetes'));
             const kapur = data.find(d => clean(getNama(d)).includes('kapur'));
+            const kapur = data.find(d => clean(getNama(d)).includes('kapur'));
+            const kapur = data.find(d => clean(getNama(d)).includes('kapur'));
 
             // Render Gula
             if(gula) {
@@ -516,8 +549,22 @@
                 document.getElementById('inv-kapur-pakai').innerText = parseNum(kapur.Pemakaian).toLocaleString('id-ID');
                 document.getElementById('inv-kapur-sisa').innerText = parseNum(kapur.Sisa).toLocaleString('id-ID');
             }
-        }
 
+             // Render Belerang
+            if(belerang) {
+                document.getElementById('inv-belerang-stock').innerText = parseNum(belerang.Persediaan).toLocaleString('id-ID');
+                document.getElementById('inv-belerang-pakai').innerText = parseNum(belerang.Pemakaian).toLocaleString('id-ID');
+                document.getElementById('inv-belerang-sisa').innerText = parseNum(belerang.Sisa).toLocaleString('id-ID');
+            }
+
+            // Render Solar
+            if(solar) {
+                document.getElementById('inv-solar-stock').innerText = parseNum(solar.Persediaan).toLocaleString('id-ID');
+                document.getElementById('inv-solar-pakai').innerText = parseNum(solar.Pemakaian).toLocaleString('id-ID');
+                document.getElementById('inv-solar-sisa').innerText = parseNum(solar.Sisa).toLocaleString('id-ID');
+            }
+        }
+       
         // ==========================================
         // RENDER FUNCTIONS (LAINNYA)
         // ==========================================
