@@ -188,6 +188,19 @@
                     <div class="glass-dark p-6 rounded-xl border-t-4 border-green-500"><h3 class="font-bold text-lg mb-4 text-green-400"><i class="fas fa-wrench mr-2"></i>Progress Maintenance</h3><div style="height: 300px;"><canvas id="chartMaintenance"></canvas></div><div id="listMaintenance" class="mt-4 space-y-2 text-sm max-h-40 overflow-y-auto"></div></div>
                     <div class="glass-dark p-6 rounded-xl border-t-4 border-yellow-500"><h3 class="font-bold text-lg mb-4 text-yellow-400"><i class="fas fa-truck mr-2"></i>Progress Procurement</h3><div style="height: 300px;"><canvas id="chartProcurement"></canvas></div><div id="listProcurement" class="mt-4 space-y-2 text-sm max-h-40 overflow-y-auto"></div></div>
                 </div>
+
+                <section id="bbt" class="page-section">
+                <h3 class="font-bold text-lg mb-4 text-white"><i class="fas fa-calendar-alt mr-2"></i>Milestone Persiapan Bahan Baku Tebu</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <div class="milestone-card p-4 rounded-lg" id="card-overhaul"><h4 class="text-sm font-bold text-gray-300">Luas Areal</h4><p class="text-xs text-gray-500 mt-1">Target: <span id="tgl-overhaul-target" class="text-white">-</span></p><p class="text-xs text-gray-500">Realisasi: <span id="tgl-overhaul-real" class="text-green-400 font-bold">-</span></p><p class="text-xs mt-2 font-semibold" id="status-overhaul">-</p></div>
+                    <div class="milestone-card p-4 rounded-lg" id="card-slow"><h4 class="text-sm font-bold text-gray-300">Protas</h4><p class="text-xs text-gray-500 mt-1">Target: <span id="tgl-slow-target" class="text-white">-</span></p><p class="text-xs text-gray-500">Realisasi: <span id="tgl-slow-real" class="text-green-400 font-bold">-</span></p><p class="text-xs mt-2 font-semibold" id="status-slow">-</p></div>
+                    <div class="milestone-card p-4 rounded-lg" id="card-steam"><h4 class="text-sm font-bold text-gray-300">Produksi Tebu</h4><p class="text-xs text-gray-500 mt-1">Target: <span id="tgl-steam-target" class="text-white">-</span></p><p class="text-xs text-gray-500">Realisasi: <span id="tgl-steam-real" class="text-green-400 font-bold">-</span></p><p class="text-xs mt-2 font-semibold" id="status-steam">-</p></div>
+                    <div class="milestone-card p-4 rounded-lg" id="card-giling"><h4 class="text-sm font-bold text-gray-300">Masa Tanam</h4><p class="text-xs text-gray-500 mt-1">Target: <span id="tgl-giling-target" class="text-white">-</span></p><p class="text-xs text-gray-500">Realisasi: <span id="tgl-giling-real" class="text-green-400 font-bold">-</span></p><p class="text-xs mt-2 font-semibold" id="status-giling">-</p></div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6 mb-6">
+                    <div class="glass-dark p-6 rounded-xl border-t-4 border-green-500"><h3 class="font-bold text-lg mb-4 text-green-400"><i class="fas fa-wrench mr-2"></i>Progress Maintenance</h3><div style="height: 300px;"><canvas id="chartMaintenance"></canvas></div><div id="listMaintenance" class="mt-4 space-y-2 text-sm max-h-40 overflow-y-auto"></div></div>
+                    <div class="glass-dark p-6 rounded-xl border-t-4 border-yellow-500"><h3 class="font-bold text-lg mb-4 text-yellow-400"><i class="fas fa-truck mr-2"></i>Progress Procurement</h3><div style="height: 300px;"><canvas id="chartProcurement"></canvas></div><div id="listProcurement" class="mt-4 space-y-2 text-sm max-h-40 overflow-y-auto"></div></div>
+                </div>
             </section>
 
             <!-- PRODUCT INVENTORY (HALAMAN BARU) -->
