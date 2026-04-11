@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ManufactureOS - Enterprise Dashboard</title>
+    
+    <!-- Tailwind CSS (Styling) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js (Grafik) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Font Awesome (Ikon) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Konfigurasi Tema Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a8a', // Blue 900
+                        secondary: '#3b82f6', // Blue 500
+                        accent: '#f59e0b', // Amber 500
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .hidden-section { display: none; }
+        /* Transisi halus */
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 h-screen overflow-hidden flex">
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="w-64 bg-slate-900 text-white flex flex-col shadow-xl z-20">
+        <div class="h-16 flex items-center justify-center font-bold text-xl border-b border-slate-700 bg-slate-800">
+            <i class="fa-solid fa-industry mr-2 text-blue-400"></i> ManufactureOS
+        </div>
+        
+        <nav class="flex-1 px-4 py-6 space-y-2">
+            <button onclick="nav('dashboard')" id="nav-dashboard" class="nav-btn w-full text-left px-4 py-3 rounded-lg bg-blue-600 hover:bg-slate-700 transition flex items-center">
+                <i class="fa-solid fa-chart-line w-6"></i> Dashboard
+            </button>
+            <button onclick="nav('production')" id="nav-production" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-slate-700 transition flex items-center text-slate-300">
+                <i class="fa-solid fa-gears w-6"></i> Produksi
+            </button>
+            <button onclick="nav('inventory')" id="nav-inventory" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-slate-700 transition flex items-center text-slate-300">
+                <i class="fa-solid fa-boxes-stacked w-6"></i> Gudang
+            </button>
+            <button onclick="nav('finance')" id="nav-finance" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-slate-700 transition flex items-center text-slate-300">
+                <i class="fa-solid fa-money-bill-trend-up w-6"></i> Keuangan
+            </button>
+        </nav>
+
+        <div class="p-4 border-t border-slate-700 bg-slate-800">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center font-bold">AD</div>
+                <div>
+                    <p class="text-sm font-semibold">Admin User</p>
+                    <p class="text-xs text-slate-400">Manager</p>
+                </div>
+            </div>
+            <button onclick="logout()" class="mt-4 w-full text-xs text-red-400 hover:text-red-300 text-center">Logout</button>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 flex flex-col h-screen overflow-hidden relative">
+        
+        <!-- Header -->
+        <header class="h-16 bg-white shadow-sm flex items-center justify-between px-8 z-10">
+            <h2 id="page-title" class="text-xl font-bold text-gray-700">Dashboard Overview</h2>
+            <div class="flex items-center gap-4">
+                <div class="relative">
+                    <i class="fa-regular fa-bell text-gray-500 text-lg cursor-pointer hover:text-blue-600"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">3</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Scrollable Content Area -->
+        <div class="flex-1 overflow-y-auto p-8 bg-gray-50">
+            
+            <!-- NOTIFIKASI AI (Toast) -->
+            <div id="ai-alert" class="hidden mb-6 bg-indigo-50 border-l-4 border-indigo-500 p-4 shadow-sm rounded-r">
+                <div class="flex">
+                    <div class="flex-shrink-0 text-indigo-500 text-xl"><i class="fa-solid fa-robot"></i></div>
+                    <div class="ml-3">
+                        <p class="text-sm font-bold text-indigo-800">AI Insight Terdeteksi!</p>
+                        <p class="text-sm text-indigo-700" id="ai-message">Produksi turun drastis pada shift malam.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION: DASHBOARD -->
+            <div id="section-dashboard" class="fade-in">
+                <!-- KPI Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <div class="text-gray-500 text-sm font-medium mb-1">Total Produksi (Bulan Ini)</div>
+                        <div class="text-2xl font-bold text-gray-800">124,500 <span class="text-sm text-gray-400 font-normal">pcs</span></div>
+                        <div class="text-green-500 text-xs mt-2"><i class="fa-solid fa-arrow-up"></i> 5.2% vs bulan lalu</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <div class="text-gray-500 text-sm font-medium mb-1">Efisiensi Mesin</div>
+                        <div class="text-2xl font-bold text-gray-800">92.4%</div>
+                        <div class="text-green-500 text-xs mt-2"><i class="fa-solid fa-check"></i> Optimal</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <div class="text-gray-500 text-sm font-medium mb-1">Stok Kritis</div>
+                        <div class="text-2xl font-bold text-red-600">3 <span class="text-sm text-gray-400 font-normal">item</span></div>
+                        <div class="text-red-500 text-xs mt-2"><i class="fa-solid fa-triangle-exclamation"></i> Perlu restock</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <div class="text-gray-500 text-sm font-medium mb-1">Estimasi Profit</div>
+                        <div class="text-2xl font-bold text-gray-800">Rp 4.2M</div>
+                        <div class="text-green-500 text-xs mt-2"><i class="fa-solid fa-arrow-trend-up"></i> Naik 8%</div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h3 class="font-bold text-gray-700 mb-4">Grafik Produksi Harian</h3>
+                        <canvas id="productionChart" height="200"></canvas>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h3 class="font-bold text-gray-700 mb-4">Komposisi Defect Produk</h3>
+                        <canvas id="defectChart" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION: PRODUKSI -->
+            <div id="section-production" class="hidden-section fade-in">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-6">
+                    <h3 class="font-bold text-gray-700 mb-4 border-b pb-2">Input Data Produksi</h3>
+                    <form id="production-form" class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal</label>
+                            <input type="date" id="prod-date" class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Jumlah Produksi (pcs)</label>
+                            <input type="number" id="prod-qty" placeholder="Contoh: 5000" class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Jumlah Defect (pcs)</label>
+                            <input type="number" id="prod-defect" placeholder="Contoh: 50" class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none" required>
+                        </div>
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition">
+                            <i class="fa-solid fa-save mr-2"></i> Simpan & Analisa AI
+                        </button>
+                    </form>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h3 class="font-bold text-gray-700 mb-4">Log Produksi Terkini</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm">
+                            <thead class="bg-gray-50 text-gray-500">
+                                <tr>
+                                    <th class="px-4 py-3">Tanggal</th>
+                                    <th class="px-4 py-3">Produksi (pcs)</th>
+                                    <th class="px-4 py-3">Defect (pcs)</th>
+                                    <th class="px-4 py-3">Defect Rate</th>
+                                    <th class="px-4 py-3">Status AI</th>
+                                </tr>
+                            </thead>
+                            <tbody id="production-table-body" class="divide-y divide-gray-100">
+                                <!-- Data akan diisi oleh JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION: INVENTORY (Placeholder) -->
+            <div id="section-inventory" class="hidden-section fade-in">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h3 class="font-bold text-gray-700 mb-4">Status Stok Gudang</h3>
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-gray-50 text-gray-500">
+                            <tr>
+                                <th class="px-4 py-3">SKU</th>
+                                <th class="px-4 py-3">Nama Barang</th>
+                                <th class="px-4 py-3">Kategori</th>
+                                <th class="px-4 py-3">Stok</th>
+                                <th class="px-4 py-3">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            <tr>
+                                <td class="px-4 py-3">RAW-001</td>
+                                <td class="px-4 py-3">Baja Plat 5mm</td>
+                                <td class="px-4 py-3">Bahan Baku</td>
+                                <td class="px-4 py-3">12,000 kg</td>
+                                <td class="px-4 py-3"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">Aman</span></td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3">RAW-002</td>
+                                <td class="px-4 py-3">Cat Industri Hitam</td>
+                                <td class="px-4 py-3">Bahan Baku</td>
+                                <td class="px-4 py-3">50 L</td>
+                                <td class="px-4 py-3"><span class="bg-red-100 text-red-700 px-2 py-1 rounded text-xs">Kritis</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- LOGIN OVERLAY (Simulasi Auth) -->
+    <div id="login-overlay" class="fixed inset-0 bg-slate-900 z-50 flex items-center justify-center">
+        <div class="bg-white p-8 rounded-xl shadow-2xl w-96">
+            <div class="text-center mb-6">
+                <i class="fa-solid fa-industry text-4xl text-blue-600 mb-2"></i>
+                <h2 class="text-2xl font-bold text-gray-800">ManufactureOS</h2>
+                <p class="text-gray-500 text-sm">Masuk ke sistem manufaktur</p>
+            </div>
+            <form onsubmit="handleLogin(event)">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                    <input type="text" value="admin" class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input type="password" value="admin" class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-bold transition">LOGIN</button>
+            </form>
+            <p class="text-xs text-center text-gray-400 mt-4">Demo: Klik Login langsung</p>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC (MOCK BACKEND & AI) -->
+    <script>
+        // --- 1. STATE MANAGEMENT (DATABASE SIMULATION) ---
+        const state = {
+            isLoggedIn: false,
+            productionData: [
+                { date: '2023-10-01', qty: 4200, defect: 40 },
+                { date: '2023-10-02', qty: 4100, defect: 35 },
+                { date: '2023-10-03', qty: 4300, defect: 25 },
+                { date: '2023-10-04', qty: 2800, defect: 200 }, // Anomali
+                { date: '2023-10-05', qty: 4400, defect: 30 },
+            ]
+        };
+
+        let chartInstance = null;
+
+        // --- 2. AUTHENTICATION LOGIC ---
+        function handleLogin(e) {
+            e.preventDefault();
+            // Simulasi delay network
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = "Memuat...";
+            btn.disabled = true;
+
+            setTimeout(() => {
+                document.getElementById('login-overlay').classList.add('hidden');
+                state.isLoggedIn = true;
+                initDashboard();
+            }, 800);
+        }
+
+        function logout() {
+            location.reload(); // Reload untuk reset simulasi
+        }
+
+        // --- 3. NAVIGATION LOGIC ---
+        function nav(section) {
+            // Update UI Sidebar
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('text-slate-300');
+            });
+            const activeBtn = document.getElementById(`nav-${section}`);
+            activeBtn.classList.remove('text-slate-300');
+            activeBtn.classList.add('bg-blue-600', 'text-white');
+
+            // Show/Hide Sections
+            const sections = ['dashboard', 'production', 'inventory', 'finance'];
+            sections.forEach(s => {
+                const el = document.getElementById(`section-${s}`);
+                if(s === section) {
+                    el.classList.remove('hidden-section');
+                } else {
+                    el.classList.add('hidden-section');
+                }
+            });
+
+            // Update Title
+            const titles = {
+                dashboard: 'Dashboard Overview',
+                production: 'Laporan Produksi',
+                inventory: 'Persediaan Gudang',
+                finance: 'Laporan Keuangan'
+            };
+            document.getElementById('page-title').innerText = titles[section];
+        }
+
+        // --- 4. AI SIMULATION LOGIC ---
+        function runAIAnalysis(produced, defect) {
+            // Logika Sederhana: Defect rate > 5% ATAU Produksi < 3000 (Anomali)
+            const defectRate = (defect / produced) * 100;
+            
+            if (defectRate > 5 || produced < 3000) {
+                const msg = defectRate > 5 
+                    ? `Tingkat defect tinggi (${defectRate.toFixed(1)}%). Perlu cek quality control!`
+                    : `Produksi rendah (${produced}). Deteksi potensi gangguan mesin.`;
+                
+                showAIAlert(msg);
+                return "Anomali Terdeteksi";
+            }
+            return "Normal";
+        }
+
+        function showAIAlert(message) {
+            const alertBox = document.getElementById('ai-alert');
+            document.getElementById('ai-message').innerText = message;
+            alertBox.classList.remove('hidden');
+            // Auto hide setelah 5 detik
+            setTimeout(() => alertBox.classList.add('hidden'), 6000);
+        }
+
+        // --- 5. DASHBOARD & CHART RENDERING ---
+        function initDashboard() {
+            renderProductionTable();
+            renderChart();
+            
+            // Set default date to today
+            document.getElementById('prod-date').valueAsDate = new Date();
+        }
+
+        function renderChart() {
+            const ctx = document.getElementById('productionChart').getContext('2d');
+            
+            // Siapkan data dari state
+            const labels = state.productionData.map(d => d.date);
+            const dataQty = state.productionData.map(d => d.qty);
+            const dataDefect = state.productionData.map(d => d.defect);
+
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Produksi (pcs)',
+                            data: dataQty,
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Defect (pcs)',
+                            data: dataDefect,
+                            borderColor: '#ef4444',
+                            backgroundColor: 'transparent',
+                            borderDash: [5, 5],
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+
+            // Render Pie Chart Defect
+            const ctxDefect = document.getElementById('defectChart').getContext('2d');
+            new Chart(ctxDefect, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Good', 'Defect'],
+                    datasets: [{
+                        data: [
+                            dataQty.reduce((a, b) => a + b, 0) - dataDefect.reduce((a, b) => a + b, 0),
+                            dataDefect.reduce((a, b) => a + b, 0)
+                        ],
+                        backgroundColor: ['#10b981', '#ef4444']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        // --- 6. FORM HANDLING & TABLE UPDATE ---
+        document.getElementById('production-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const date = document.getElementById('prod-date').value;
+            const qty = parseInt(document.getElementById('prod-qty').value);
+            const defect = parseInt(document.getElementById('prod-defect').value);
+
+            // Simpan ke Mock Database
+            const newData = { date, qty, defect };
+            state.productionData.push(newData);
+
+            // Jalankan Analisa AI
+            const aiStatus = runAIAnalysis(qty, defect);
+            
+            // Refresh UI
+            renderProductionTable();
+            renderChart(); // Update chart real-time
+            
+            // Reset Form
+            e.target.reset();
+            document.getElementById('prod-date').valueAsDate = new Date();
+            
+            // Beri feedback visual (Tombol berubah sebentar)
+            const btn = e.target.querySelector('button');
+            const originalHtml = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> Tersimpan';
+            btn.classList.replace('bg-blue-600', 'bg-green-600');
+            setTimeout(() => {
+                btn.innerHTML = originalHtml;
+                btn.classList.replace('bg-green-600', 'bg-blue-600');
+            }, 1500);
+        });
+
+        function renderProductionTable() {
+            const tbody = document.getElementById('production-table-body');
+            tbody.innerHTML = '';
+
+            // Sort terbaru di atas
+            const sortedData = [...state.productionData].reverse();
+
+            sortedData.forEach(row => {
+                const defectRate = ((row.defect / row.qty) * 100).toFixed(1);
+                const rateClass = defectRate > 5 ? 'text-red-600 font-bold' : 'text-gray-600';
+                
+                // Cek status AI untuk baris ini (Sederhana)
+                const statusClass = (defectRate > 5 || row.qty < 3000) 
+                    ? 'bg-red-100 text-red-700' 
+                    : 'bg-green-100 text-green-700';
+                const statusText = (defectRate > 5 || row.qty < 3000) ? 'Anomali' : 'Normal';
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="px-4 py-3 font-medium">${row.date}</td>
+                    <td class="px-4 py-3">${row.qty.toLocaleString()}</td>
+                    <td class="px-4 py-3">${row.defect.toLocaleString()}</td>
+                    <td class="px-4 py-3 ${rateClass}">${defectRate}%</td>
+                    <td class="px-4 py-3"><span class="${statusClass} px-2 py-1 rounded text-xs font-bold">${statusText}</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+    </script>
+</body>
+</html>
